@@ -1,0 +1,54 @@
+[
+  {
+    "slot": "hero",
+    "photographer": "Jimmy  Boos",
+    "pexelsId": 12343310,
+    "pageUrl": "https://www.pexels.com/photo/people-wearing-black-wetsuits-while-surfing-on-the-beach-12343310/"
+  },
+  {
+    "slot": "hero-portrait",
+    "photographer": "Red Zeppelin",
+    "pexelsId": 34596817,
+    "pageUrl": "https://www.pexels.com/photo/aerial-view-of-surfer-on-the-jurassic-coastline-34596817/"
+  },
+  {
+    "slot": "place",
+    "photographer": "Zak Mogel",
+    "pexelsId": 37138791,
+    "pageUrl": "https://www.pexels.com/photo/bustling-beachfront-with-boats-in-taghazout-37138791/"
+  },
+  {
+    "slot": "table",
+    "photographer": "Askar Abayev",
+    "pexelsId": 5638752,
+    "pageUrl": "https://www.pexels.com/photo/food-on-decorated-table-during-party-5638752/"
+  },
+  {
+    "slot": "room-bed",
+    "source": "ai-generated",
+    "generator": "pollinations.ai (Flux)",
+    "seed": 47,
+    "promptSource": "ART-DIRECTION.md"
+  },
+  {
+    "slot": "room-niche",
+    "source": "ai-generated",
+    "generator": "pollinations.ai (Flux)",
+    "seed": 47,
+    "promptSource": "ART-DIRECTION.md"
+  },
+  {
+    "slot": "room-courtyard",
+    "source": "ai-generated",
+    "generator": "pollinations.ai (Flux)",
+    "seed": 11,
+    "promptSource": "ART-DIRECTION.md"
+  },
+  {
+    "slot": "room-terrace",
+    "source": "ai-generated",
+    "generator": "pollinations.ai (Flux)",
+    "seed": 11,
+    "promptSource": "ART-DIRECTION.md"
+  }
+]

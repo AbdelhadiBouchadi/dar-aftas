@@ -1,0 +1,350 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* ==========================================================================
+   ARGAN & ATLANTIC — Dar Tamri
+   --------------------------------------------------------------------------
+   Palette built from the materials of the Souss coast, not from a generic
+   "luxury hotel" navy/gold. Every text pair below is contrast-computed
+   against WCAG 2.1 and annotated with its measured ratio.
+   ========================================================================== */
+
+:root {
+  /* --- Raw brand ramp ---------------------------------------------------- */
+  --sand: #e8dfd3; /* lime-washed plaster — page ground */
+  --sand-deep: #ddd2c3; /* the same wall in shadow — muted surfaces */
+  --bone: #f5f0e8; /* raised cards, lifted above the ground */
+  --basalt: #1c2321; /* wet volcanic rock — ink + dark sections */
+  --basalt-soft: #2a322f; /* dark surface, one step off the floor */
+  --clay: #8a5a44; /* tadelakt, unpolished */
+  --ochre: #c4703a; /* argan husk — graphic fills, rules, large marks */
+  --ochre-ink: #9a4f22; /* darkened for type: 4.53:1 on --sand ✓ AA */
+  --ochre-light: #d98a52; /* lightened for type on dark: 5.91:1 on --basalt ✓ */
+  --haze: #6b7f7a; /* Atlantic haze — borders, 3:1 large text only */
+  --haze-ink: #4a5a55; /* darkened for type: 5.52:1 on --sand ✓ AA */
+  --haze-dim: #8b9d97; /* secondary type on dark: 6.4:1 on --basalt ✓ */
+
+  /* --- Semantic tokens (shadcn/ui + 21st.dev contract) -------------------
+     Registry components import these names. Mapping them onto the brand ramp
+     means any dropped-in component inherits Argan & Atlantic for free. */
+  --background: var(--sand);
+  --foreground: var(--basalt);
+  --card: var(--bone);
+  --card-foreground: var(--basalt);
+  --popover: var(--bone);
+  --popover-foreground: var(--basalt);
+  --primary: var(--basalt);
+  --primary-foreground: var(--sand);
+  --secondary: var(--sand-deep);
+  --secondary-foreground: var(--basalt);
+  --muted: var(--sand-deep);
+  --muted-foreground: var(--haze-ink);
+  --accent: var(--ochre);
+  --accent-foreground: var(--bone);
+  --destructive: #a03328;
+  --destructive-foreground: #f5f0e8;
+  --border: color-mix(in oklab, var(--haze) 34%, transparent);
+  --input: color-mix(in oklab, var(--haze) 44%, transparent);
+  --ring: var(--ochre-ink);
+  --radius: 0.125rem; /* near-square. Rounded corners read soft, not luxe. */
+}
+
+/* Dark theme = the house after sunset. Not an inversion — a re-tone.
+   Desaturated warm accents on basalt, per color-dark-mode guidance. */
+.dark,
+:root[data-theme="dark"] {
+  --background: var(--basalt);
+  --foreground: var(--sand);
+  --card: var(--basalt-soft);
+  --card-foreground: var(--sand);
+  --popover: var(--basalt-soft);
+  --popover-foreground: var(--sand);
+  --primary: var(--sand);
+  --primary-foreground: var(--basalt);
+  --secondary: var(--basalt-soft);
+  --secondary-foreground: var(--sand);
+  --muted: var(--basalt-soft);
+  --muted-foreground: var(--haze-dim);
+  --accent: var(--ochre-light);
+  --accent-foreground: var(--basalt);
+  --border: color-mix(in oklab, var(--haze) 30%, transparent);
+  --input: color-mix(in oklab, var(--haze) 38%, transparent);
+  --ring: var(--ochre-light);
+}
+
+@theme inline {
+  /* Semantic — what components should use */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Brand — for expressive, non-component use */
+  --color-sand: var(--sand);
+  --color-sand-deep: var(--sand-deep);
+  --color-bone: var(--bone);
+  --color-basalt: var(--basalt);
+  --color-basalt-soft: var(--basalt-soft);
+  --color-clay: var(--clay);
+  --color-ochre: var(--ochre);
+  --color-ochre-ink: var(--ochre-ink);
+  --color-ochre-light: var(--ochre-light);
+  --color-haze: var(--haze);
+  --color-haze-ink: var(--haze-ink);
+  --color-haze-dim: var(--haze-dim);
+
+  --font-display: var(--ff-display), "Didot", "Times New Roman", serif;
+  --font-body: var(--ff-body), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--ff-mono), ui-monospace, monospace;
+
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) * 2);
+
+  /* Spacious scale — density dial at 3/10 for a hospitality brand */
+  --spacing-section: clamp(6rem, 14vh, 11rem);
+  --spacing-gutter: clamp(1.25rem, 5vw, 5rem);
+
+  /* Motion tokens — one rhythm across the whole site */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    /* Lenis drives scrolling; native smooth would fight it. */
+    scroll-behavior: auto;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    font-weight: 300;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Didone at display sizes wants negative tracking and tight leading. */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Never remove the focus ring — offset it so it reads as designed. */
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+
+  ::selection {
+    background-color: var(--color-ochre);
+    color: var(--color-bone);
+  }
+
+  /* Data figures must not reflow as values change. */
+  .font-mono,
+  [data-numeric] {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer utilities {
+  /* Small uppercase mono label — the site's structural voice. */
+  .label-mono {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  /* Clip wrapper for GSAP mask reveals. */
+  .mask-reveal {
+    display: block;
+    overflow: hidden;
+    clip-path: inset(0 0 -0.25em 0);
+  }
+
+  /* SplitText's mask wrapper must clip, or lines are visible above the edge. */
+  .reveal-line {
+    will-change: transform;
+  }
+
+  /* ------------------------------------------------------------------
+     Unified film grade.
+
+     Photography arrives from many sources with many different white
+     balances. Left alone it reads as a mood board. This pulls every frame
+     toward Argan & Atlantic: desaturate slightly, lift contrast, then lay a
+     warm-highlight / cool-shadow gradient over the top in soft-light, and
+     finish with fine grain. Applied once here rather than per-image, so the
+     whole site can be re-graded from a single place.
+     ------------------------------------------------------------------ */
+  /* Deliberately does NOT set `position`. It is a single-class utility, so a
+     `position: relative` here would win on source order over Tailwind's
+     `absolute` and silently break any absolutely-positioned consumer.
+     Callers must already establish a positioning context — both do. */
+  .photo-film {
+    isolation: isolate;
+  }
+
+  .photo-film img {
+    filter: saturate(0.82) contrast(1.05);
+  }
+
+  /* Tone: warm into the highlights, cool-green into the shadows. */
+  .photo-film::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    mix-blend-mode: soft-light;
+    background: linear-gradient(
+      168deg,
+      color-mix(in srgb, var(--ochre) 62%, transparent) 0%,
+      transparent 44%,
+      color-mix(in srgb, var(--haze) 34%, transparent) 70%,
+      color-mix(in srgb, var(--basalt) 58%, transparent) 100%
+    );
+  }
+
+  /* Grain, much finer than the flat-surface variant below. */
+  .photo-film::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    opacity: 0.16;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+  }
+
+  /* Fine film grain. Keeps large flat plaster fields from looking like CSS. */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.42;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  }
+
+  .gutter {
+    padding-inline: var(--spacing-gutter);
+  }
+
+  /* ------------------------------------------------------------------
+     Custom cursor.
+
+     The class is added by `Cursor` only under `(pointer: fine)` and
+     `(prefers-reduced-motion: no-preference)`, so touch users and anyone who
+     asked for less motion keep the native pointer untouched.
+
+     Text-entry elements are excluded: the I-beam and the blinking caret carry
+     information a decorative dot cannot replace, and hiding them would make
+     fields genuinely harder to use.
+     ------------------------------------------------------------------ */
+  html.has-custom-cursor,
+  html.has-custom-cursor a,
+  html.has-custom-cursor button,
+  html.has-custom-cursor [role="button"] {
+    cursor: none;
+  }
+
+  html.has-custom-cursor input,
+  html.has-custom-cursor textarea,
+  html.has-custom-cursor select,
+  html.has-custom-cursor [contenteditable="true"] {
+    cursor: auto;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Progressive enhancement gate.
+
+   `html.js` is set by a blocking inline script in <head>, so it lands before
+   first paint (no flash of visible-then-hidden text). If JavaScript is
+   disabled or fails to load, the class never appears and every animated
+   element renders in its final, fully readable state.
+   -------------------------------------------------------------------------- */
+/* Photography wipes in from its bottom edge; clipped until GSAP takes over. */
+html.js [data-clip-reveal] {
+  clip-path: inset(0% 0% 100% 0%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js [data-clip-reveal] {
+    clip-path: none;
+  }
+}
+
+html.js [data-reveal],
+html.js [data-reveal-fade],
+html.js [data-hero-eyebrow],
+html.js [data-hero-mark],
+html.js [data-hero-sub],
+html.js [data-hero-cue],
+html.js [data-hero-reading] {
+  visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js [data-reveal],
+  html.js [data-reveal-fade],
+  html.js [data-hero-eyebrow],
+  html.js [data-hero-mark],
+  html.js [data-hero-sub],
+  html.js [data-hero-cue],
+  html.js [data-hero-reading] {
+    visibility: visible;
+  }
+}
+
+/* Respect the OS setting globally as a safety net. GSAP is additionally
+   gated via gsap.matchMedia() so timelines are never even built. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
