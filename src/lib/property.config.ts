@@ -5,75 +5,86 @@ import type { PropertyConfig } from "@/lib/types";
  *  THE ONLY FILE A NEW CLIENT NEEDS.
  * ============================================================================
  *
- * This site is a template for small hospitality on the Agadir coast — surf
- * camps, guest houses, riads and lodges from Anza north to Imsouane. Everything
- * that identifies a property lives in this object: the name, the coastline the
- * live almanac reads from, the rooms, the breaks, and every line of section
- * copy. No component holds a property-specific string.
+ * This site is a template for small hospitality and surf operators on the
+ * Moroccan Atlantic. Everything that identifies a business lives in this
+ * object: the name, the coastline the live almanac reads from, the packages,
+ * the breaks, and every line of section copy. No component holds a
+ * business-specific string.
  *
  * To pitch a new prospect:
  *
  *   1. Edit `identity` — name, wordmark, contact, url.
- *   2. Edit `coast` — the real latitude/longitude of the house, and the bearing
- *      its shore faces. The almanac band retargets itself; nothing else to do.
- *   3. Edit `rooms` and `breaks` to what they actually have and actually surf.
+ *   2. Edit `coast` — the real latitude/longitude, and the bearing its shore
+ *      faces. The almanac band retargets itself; nothing else to do.
+ *   3. Edit `packages` and `breaks` to what they actually sell and actually surf.
  *   4. Rewrite the copy blocks in their voice.
  *   5. Drop photography into `src/assets/photos/` against the slot ids in
  *      `@/lib/photos`. Unbound slots render their art-direction brief, so an
- *      unshot property is still presentable.
+ *      unshot business is still presentable.
  *
- * The demo property below — Dar Aftas — is deliberately fictional and
- * deliberately not tied to one village. It sits in Taghazout Bay because that
- * is the middle of the coast, and its rooms and breaks are named across the
- * whole stretch, so any prospect between Anza and Imsouane can see their own
- * house in it.
+ * ---------------------------------------------------------------------------
+ *  Current tenant: Alaïa Surf School, Taghazout.
+ * ---------------------------------------------------------------------------
+ *
+ * Every fact below — name, phone, packages, prices, schedule, rating and the
+ * three quoted reviews — comes from the client profile at
+ * `intake/alaia/data.json` and is reproduced verbatim where it is quoted.
+ * Two fields could not be sourced from it and are marked TO CONFIRM inline.
  */
 export const PROPERTY: PropertyConfig = {
   identity: {
-    name: "Dar Aftas",
-    wordmark: "AFTAS",
-    tagline: "Guest house & surf — Taghazout Bay",
-    /** Tachelhit for the shore. Chosen because it names the whole coast, not one village. */
+    name: "Alaïa Surf School",
+    wordmark: "ALAÏA",
+    tagline: "Authentic Moroccan Surf Experiences",
+    /** Footer standing line. Says where the school is, not what it promises. */
     provenance:
-      "Aftas — Tachelhit for the shore: the strip of sand between the argan and the Atlantic.",
+      "Tawenza Square, Taghazout — the Atlantic at the end of the street, and a coast that was surfed by the people who live on it long before anyone flew in for it.",
     description:
-      "A six-room guest house on the Taghazout Bay coast, Morocco. The house keeps the ocean's hours: swell, tide and first light decide the day.",
-    location: "Taghazout Bay, Agadir Ida-Outanane, Morocco",
+      "A surf school on Tawenza Square, Taghazout, Morocco. Professional local coaching, premium equipment and a transfer each morning to whichever point is working — group classes, private lessons, surf and yoga.",
+    location: "Tawenza Square, Taghazout, Morocco",
     locality: "Taghazout",
     region: "Souss-Massa",
     countryCode: "MA",
     country: "Morocco",
-    coordinates: "30.5427° N, 9.7110° W",
-    email: "hello@daraftas.ma",
-    phone: "+212 6 00 00 00 00",
-    url: "https://daraftas.ma",
+    coordinates: "30.5442° N, 9.7108° W",
+    /** TO CONFIRM — read off the school's own printed flyers in the intake. */
+    email: "surfschool.alaia@gmail.com",
+    phone: "+212 6 64 08 53 28",
+    /** TO CONFIRM — the rash vests read WWW.ALAIA.•• but the TLD is not legible. */
+    url: "https://alaia.ma",
   },
 
   /**
-   * Taghazout Bay. The points along this stretch look roughly due west, which
-   * puts the land at 90° — the reciprocal the wind classifier measures against.
+   * Taghazout. The points along this stretch look roughly due west, which puts
+   * the land at 90° — the reciprocal the wind classifier measures against.
    */
   coast: {
-    latitude: 30.5427,
-    longitude: -9.711,
+    latitude: 30.5442,
+    longitude: -9.7108,
     coastFacingDegrees: 270,
   },
 
   seo: {
     keywords: [
-      "Taghazout guest house",
-      "surf camp Morocco",
-      "Taghazout Bay boutique hotel",
-      "Agadir surf accommodation",
-      "Imsouane surf stay",
-      "Morocco surf retreat",
+      "surf school Taghazout",
+      "surf lessons Morocco",
+      "learn to surf Taghazout",
+      "private surf lesson Agadir",
+      "surf and yoga Morocco",
+      "Taghazout surf camp",
     ],
-    amenities: ["Surf guiding", "Roof terrace", "Half board", "Board storage"],
+    amenities: [
+      "Group surf classes",
+      "Private coaching",
+      "Surf and yoga",
+      "Premium equipment included",
+      "Transfer to the spot",
+    ],
   },
 
   nav: [
-    { label: "The House", href: "#house" },
-    { label: "Rooms", href: "#rooms" },
+    { label: "The School", href: "#school" },
+    { label: "Packages", href: "#packages" },
     { label: "The Points", href: "#points" },
     { label: "A Day", href: "#day" },
     { label: "The Table", href: "#table" },
@@ -101,134 +112,133 @@ export const PROPERTY: PropertyConfig = {
 
   hero: {
     subtitle:
-      "Six rooms above the points at Taghazout Bay. The house keeps the ocean's hours — swell, tide and first light decide the day.",
-    ogStrapline: "Six rooms above the points",
+      "A surf school on Tawenza Square, Taghazout. Local coaches, premium boards, and a transfer every morning to whichever point is working.",
+    ogStrapline: "Coaching on the Taghazout points",
   },
 
   heroPhoto: {
     id: "hero",
     direction:
-      "The defining frame of the site. Dawn from the cliff path: a point peeling right, offshore spray lit from behind, two surfers small in a very large ocean. Cold blue water against warm ochre rock — the entire brand palette occurring naturally. Shot wide, horizon low, room at the top for the wordmark.",
-    tone: "dawn",
+      "A student up and riding on a clean blue wall, the coach still in the water behind him. Water fills the frame; the top half is open ocean, which is what keeps the wordmark legible over it.",
+    tone: "ocean",
     ratio: "21/9",
   },
 
   placePhoto: {
     id: "place",
     direction:
-      "The village from above at last light. Flat roofs, satellite dishes, whitewash going gold, the Atlantic filling the top third of the frame. Documentary, not aspirational — this is a working fishing coast and it should look like one.",
-    tone: "dusk",
+      "The beach at the end of the session — a class sitting on the sand with the town stacked behind them. Documentary, not aspirational: this is a working coast and it should look like one.",
+    tone: "noon",
     ratio: "3/2",
   },
 
   manifesto: {
-    eyebrow: "The House",
+    eyebrow: "The School",
     statement:
-      "Six rooms, one long table, and a terrace that faces the swell window.",
+      "Local coaches, world-class points, and a group that stops being strangers by Tuesday.",
     body: [
-      "Dar Aftas is a working guest house, not a resort. The building is old Taghazout — thick walls, lime-washed tadelakt, a stair that climbs to the roof where everyone ends up at six in the evening. We rebuilt it slowly, with masons from Aourir, using the materials the coast already had.",
-      "There is no schedule pinned to the wall. There is a tide table. Breakfast is whenever the morning session ends, and it is still hot when you get back, because the kitchen has been watching the water too.",
+      "Alaïa is a surf school first. The coaches are from this coast, they surf it out of season as well as in, and they read the chart every morning before deciding where the vans go. That is the whole method: put people in front of the right wave for their level, on the right day, with equipment that does not fight them.",
+      "The rest is Berber hospitality, and it is not a marketing line. Breakfast before the wave check, a shared lunch after the session, yoga in the shala most evenings, and a table that everyone ends up at. People arrive booked onto a lesson and leave having joined something.",
     ],
-    pullQuote:
-      "There is no schedule pinned to the wall. There is a tide table.",
+    pullQuote: "You are not booking a lesson. You are joining the morning.",
   },
 
-  roomsCopy: {
-    eyebrow: "Rooms",
-    title: "Six rooms, each named for a piece of this coast.",
+  packagesCopy: {
+    eyebrow: "Packages",
+    title: "Four ways to spend a day in the water.",
     footnote:
-      "Rates are per room per night and include breakfast, dinner at the long table, and boards. Two remaining rooms — Tamraght and Imsouane — are held for longer stays and shown on request.",
+      "Prices are per person per day and include the transfer to the spot, a towel, and premium equipment — board, wetsuit and rash vest. Every package is open to all levels; which spot your group surfs is decided at the morning wave check, not by a timetable.",
   },
 
-  rooms: [
+  packages: [
     {
-      id: "anza",
-      name: "Anza",
-      meaning: "For the black-sand beach where the coast road leaves Agadir",
-      sleeps: 2,
-      aspect: "Sea-facing, first floor",
-      details: [
-        "Tadelakt bathroom, poured and polished by hand",
-        "Bed set to catch the offshore through the shutters",
-        "Private terrace, two chairs, no table — deliberate",
+      id: "group-class",
+      name: "Group Surf Class",
+      meaning: "The morning most people come here for",
+      level: "All Levels",
+      duration: "2 hours a day",
+      includes: [
+        "Two hours of coaching a day, in a small group",
+        "Transfer to the best spot on the day",
+        "Towel and premium surfing equipment",
       ],
-      nightlyFrom: 180,
+      priceEur: 25,
       photo: {
-        id: "room-bed",
+        id: "lesson-lineup",
         direction:
-          "Morning. Low sun through half-closed cedar shutters, hard stripes of light across a linen bed. Wet wetsuit hanging on the terrace rail, just in frame.",
-        tone: "dawn",
-        ratio: "4/5",
-      },
-    },
-    {
-      id: "imouran",
-      name: "Imouran",
-      meaning: "For the bay north of the village that goes glassy at dawn",
-      sleeps: 2,
-      aspect: "Corner room, second floor",
-      details: [
-        "Two aspects — sunrise over the hills, sunset on the water",
-        "Deep window seat cut into a metre of wall",
-        "Berber wool blanket from the Tuesday souk at Aourir",
-      ],
-      nightlyFrom: 210,
-      photo: {
-        id: "room-niche",
-        direction:
-          "Interior, late afternoon. Wide shot showing both windows at once. Warm plaster, cool ocean light — the whole palette in one frame.",
-        tone: "interior",
-        ratio: "3/2",
-      },
-    },
-    {
-      id: "imi-ouaddar",
-      name: "Imi Ouaddar",
-      meaning: "For the fishing village up the coast and its long empty sand",
-      sleeps: 3,
-      aspect: "Garden level, argan courtyard",
-      details: [
-        "Opens onto the courtyard and its one old argan tree",
-        "Coolest room in the house through August",
-        "Board rack at the door, rinse tap outside it",
-      ],
-      nightlyFrom: 165,
-      photo: {
-        id: "room-courtyard",
-        direction:
-          "Courtyard at midday. Argan tree throwing dappled shade on lime plaster. Three boards on the rack. Shot from inside the doorway looking out, so the room frames the light.",
+          "A class on the sand before the session, boards laid out in a row, the sea flat behind them. Midday, hard light, nobody posing.",
         tone: "noon",
         ratio: "4/5",
       },
     },
     {
-      id: "tamri",
-      name: "Tamri",
-      meaning: "For the river mouth an hour north, and the bananas behind it",
-      sleeps: 4,
-      aspect: "Roof suite, full terrace",
-      details: [
-        "Whole top floor, private stair, outdoor shower",
-        "Terrace of forty square metres facing due west",
-        "The only room you can watch the sets from, in bed",
+      id: "surf-and-dine",
+      name: "Surf & Dine",
+      meaning: "A whole day, food included, from breakfast to late lunch",
+      level: "All Levels",
+      duration: "Breakfast through lunch",
+      includes: [
+        "Healthy breakfast before the wave check",
+        "Session with the coaches, equipment included",
+        "Shower, then a shared lunch at the long table",
       ],
-      nightlyFrom: 340,
+      priceEur: 35,
       photo: {
-        id: "room-terrace",
+        id: "boards-dawn",
         direction:
-          "Golden hour on the roof terrace. Low furniture, long shadows, the ocean as a hard horizontal band behind. One person, small in frame, looking at the water — never at camera.",
+          "Boards and rash vests set out at the school's frontage at first light, the ocean a flat band beyond the road. Golden hour, no people.",
+        tone: "dawn",
+        ratio: "4/5",
+      },
+    },
+    {
+      id: "private-lesson",
+      name: "Private Surf Lesson",
+      meaning: "One coach, one surfer, three hours of it",
+      level: "All Levels",
+      duration: "3 hours a day",
+      includes: [
+        "Three hours of one-to-one coaching a day",
+        "Transfer to the spot that suits your level",
+        "Towel and high-quality equipment",
+      ],
+      priceEur: 50,
+      photo: {
+        id: "shorebreak-walk",
+        direction:
+          "A coach walking two students into the shorebreak, boards under their arms, the headland behind. Taken from the sand, mid-morning.",
+        tone: "noon",
+        ratio: "4/5",
+      },
+    },
+    {
+      id: "surf-and-yoga",
+      name: "Surf & Yoga Package",
+      meaning: "Adventure in the morning, the mat afterwards",
+      level: "All Levels",
+      duration: "Session plus yoga",
+      includes: [
+        "Surf coaching with the group",
+        "Surfboard and wetsuit included",
+        "Post-surf yoga session in the shala",
+      ],
+      priceEur: 50,
+      photo: {
+        id: "warmup-sand",
+        direction:
+          "Warm-up on the sand before the session — arms crossed, eyes closed, the rest of the group blurred behind. Low afternoon sun.",
         tone: "dusk",
-        ratio: "3/2",
+        ratio: "4/5",
       },
     },
   ],
 
   pointsCopy: {
     eyebrow: "The Points",
-    title: "Most of the coast inside half an hour, and the rest worth the drive.",
+    title: "The transfer goes wherever the swell is best that morning.",
     intro:
-      "Seven breaks we actually use, roughly in the order we tend to reach for them. Which one you surf on any given morning is decided the night before, by the buoy — not by us.",
-    trackLabel: "Surf breaks near the house",
+      "Seven breaks inside an hour of the school, roughly in the order the coaches reach for them. Which one your class surfs is decided at the wave check — by the buoy, not by us.",
+    trackLabel: "Surf breaks near the school",
   },
 
   breaks: [
@@ -239,7 +249,7 @@ export const PROPERTY: PropertyConfig = {
       level: "Advanced",
       minutesAway: 5,
       worksOn: "NW 2–4m, 12s+",
-      note: "The wave that put this coast on the map. Four sections, and on the right day it joins them all the way to the boulders. Crowded by eight — which is why we leave at six.",
+      note: "The wave that put this coast on the map. Four sections, and on the right day it joins them all the way to the boulders. Crowded by eight — which is why the vans leave at six.",
     },
     {
       id: "panoramas",
@@ -248,7 +258,7 @@ export const PROPERTY: PropertyConfig = {
       level: "Intermediate",
       minutesAway: 7,
       worksOn: "NW 1–2.5m, any period",
-      note: "Softer point break over sand and rock, between Taghazout and Tamraght. Where our guiding happens most mornings. Forgiving take-off, long wall, easy paddle back.",
+      note: "Softer point break over sand and rock, between Taghazout and Tamraght. Where most of our coaching happens. Forgiving take-off, long wall, easy paddle back.",
     },
     {
       id: "banana",
@@ -299,77 +309,98 @@ export const PROPERTY: PropertyConfig = {
 
   dayCopy: {
     eyebrow: "A Day",
-    title: "The tide writes the timetable.",
+    title: "The wave check writes the timetable.",
     intro:
-      "An ordinary Tuesday in October, which is to say the best month here. Nothing on this list is compulsory, including the six-twelve.",
-    footnote: "Times shown for October · sunrise shifts ~90 min across the season",
+      "Four parts to a day here, and only the order is fixed. What happens inside each one is decided by the swell, the wind and the tide on the morning.",
+    footnote:
+      "Sessions move with the conditions · your coach confirms the shape of the day at breakfast",
   },
 
   day: [
     {
-      time: "06:12",
-      title: "First light",
-      body: "Coffee on the terrace in the dark, the kind you can stand a spoon in. Someone reads the buoy out loud. The van leaves at twenty past whether or not you are in it.",
+      marker: "Morning",
+      title: "Healthy breakfast & wave check",
+      body: "Breakfast at the school while the coaches read the swell, the period and the wind, and decide where the vans are going. Nothing is fixed the night before, because the ocean is not.",
     },
     {
-      time: "06:40",
-      title: "Dawn patrol",
-      body: "Five minutes to the point, or half an hour north if the chart says so. Two hours before the crowd, three before the wind. This is the session the whole house is organised around.",
+      marker: "Mid-Day",
+      title: "Surf sessions & transfers",
+      body: "Group and private sessions, with the transfer to whichever spot is working for your level. Boards, wetsuits and rash vests are handed out at the school — you carry nothing to the beach but yourself.",
     },
     {
-      time: "09:30",
-      title: "The long table",
-      body: "Msemen, eggs from Tamraght, argan oil pressed by the co-operative on the Tamri road, amlou, and a flat bread that never quite makes it to the middle of the table.",
+      marker: "Afternoon",
+      title: "Shared lunch & free time",
+      body: "A shower, then lunch at the long table with whoever surfed that morning. After that the afternoon is yours: the second session, the market, or nothing at all.",
     },
     {
-      time: "11:00",
-      title: "The flat hours",
-      body: "The wind comes onshore and the day opens up. Hammam, the market at Aourir on Tuesdays, or nothing at all on the roof, which is the correct answer.",
-    },
-    {
-      time: "16:30",
-      title: "Evening glass",
-      body: "The wind drops and the water goes to oil for ninety minutes. Shorter session, softer light, fewer people. Boards are back on the rack by sunset.",
-    },
-    {
-      time: "19:45",
-      title: "Dinner, one sitting",
-      body: "One menu, one time, one table. Tagine of the day from the market, and whatever the boats landed at the harbour that afternoon.",
+      marker: "Evening",
+      title: "Yoga shala & family dinners",
+      body: "Yoga in the shala on most evenings, and dinner with the group after it. This is the part guests write about afterwards, and it is the part we are least willing to change.",
     },
   ],
 
   table: {
     eyebrow: "The Table",
-    statement: "One menu. One sitting. Whatever the boats brought in.",
+    statement: "Breakfast before the session. Lunch with whoever surfed it.",
     body: [
-      "We do not run a restaurant. We run a table, and you are at it. Dinner is a single seating at a quarter to eight, cooked by Fatima, who has been feeding this house since before it took guests.",
-      "The fish comes from the harbour at Taghazout, three kilometres south, and is chosen the same afternoon. The vegetables come from the Tuesday souk at Aourir. The oil is argan, pressed by the women's co-operative on the Tamri road, and it is on the table at every meal including breakfast.",
+      "Surf & Dine exists because the best hour of the day here is not always the one in the water. It is the one after: everyone back, showered, hungry, arguing about a wave that only two people saw. We built the school around a table so that hour has somewhere to happen.",
+      "Breakfast is healthy and early, because it runs against the wave check. Lunch is shared and unhurried, because nothing follows it. Most evenings there is yoga in the shala and then dinner, and by the third day nobody asks where to sit.",
     ],
     photo: {
-      id: "table",
+      id: "common-room",
       direction:
-        "Overhead, dusk, warm lamplight only. A long table mid-meal — hands reaching, bread torn, tagine open and steaming. Deliberately imperfect: spills, crumbs, mismatched glasses. Never styled flat-lay.",
-      tone: "dusk",
+        "The school's common room from the doorway: low sofas, the board rack along the right wall, glass the full width and the beach through it. Midday, natural light only.",
+      tone: "interior",
       ratio: "16/9",
     },
     facts: [
-      { label: "Dinner", value: "19:45" },
-      { label: "Sittings", value: "One" },
+      { label: "Surf & Dine", value: "€35" },
+      { label: "Yoga", value: "Most evenings" },
     ],
   },
 
+  testimonialsCopy: {
+    eyebrow: "In Their Words",
+    title: "Forty-six reviews, averaging 4.9.",
+    ratingValue: 4.9,
+    reviewCount: 46,
+    source: "Guest reviews",
+  },
+
+  /** Quoted verbatim, in French, exactly as the guests wrote them. */
+  testimonials: [
+    {
+      quote:
+        "Très bonne découverte du surf. Première fois que j'en faisais. Taha était génial pour l'apprentissage.",
+      author: "Jean-Yves Muzelet",
+      lang: "fr",
+    },
+    {
+      quote:
+        "Superbe expérience vécue entre amis pendant 3 jours. Khaoula s'assurait toujours par messages du bon déroulé des séances. Nous avons eu Abdel, le meilleur des coach !",
+      author: "Marie Blanc",
+      lang: "fr",
+    },
+    {
+      quote:
+        "Instructeur très sympathique, matériel et combinaison propres rincées et belle qualité ! On recommande.",
+      author: "M H",
+      lang: "fr",
+    },
+  ],
+
   enquire: {
-    eyebrow: "Stay",
-    title: "Write to us. We answer the same day.",
-    body: "Tell us when you are thinking of coming and how much of the water you want. We will tell you honestly what the swell tends to do that week, and whether the house is the right one for you.",
+    eyebrow: "Book",
+    title: "Call or message us. We answer the same day.",
+    body: "Tell us your dates, how many of you there are, and whether anyone has stood on a board before. We will tell you honestly which package fits, and what the swell tends to do that week.",
     notes: [
       {
-        label: "Minimum stay",
-        body: "Three nights, or five over Christmas and New Year.",
+        label: "Where we are",
+        body: "Tawenza Square, Taghazout. Agadir Al Massira (AGA) is about an hour by road.",
       },
       {
-        label: "Getting here",
-        body: "Agadir Al Massira (AGA) is fifty minutes by road. We arrange the transfer.",
+        label: "What to bring",
+        body: "Nothing. Board, wetsuit, rash vest and towel are included in every package.",
       },
       {
         label: "Best swell",

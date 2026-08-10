@@ -1,54 +1,61 @@
-[
-  {
-    "slot": "hero",
-    "photographer": "Jimmy  Boos",
-    "pexelsId": 12343310,
-    "pageUrl": "https://www.pexels.com/photo/people-wearing-black-wetsuits-while-surfing-on-the-beach-12343310/"
-  },
-  {
-    "slot": "hero-portrait",
-    "photographer": "Red Zeppelin",
-    "pexelsId": 34596817,
-    "pageUrl": "https://www.pexels.com/photo/aerial-view-of-surfer-on-the-jurassic-coastline-34596817/"
-  },
-  {
-    "slot": "place",
-    "photographer": "Zak Mogel",
-    "pexelsId": 37138791,
-    "pageUrl": "https://www.pexels.com/photo/bustling-beachfront-with-boats-in-taghazout-37138791/"
-  },
-  {
-    "slot": "table",
-    "photographer": "Askar Abayev",
-    "pexelsId": 5638752,
-    "pageUrl": "https://www.pexels.com/photo/food-on-decorated-table-during-party-5638752/"
-  },
-  {
-    "slot": "room-bed",
-    "source": "ai-generated",
-    "generator": "pollinations.ai (Flux)",
-    "seed": 47,
-    "promptSource": "ART-DIRECTION.md"
-  },
-  {
-    "slot": "room-niche",
-    "source": "ai-generated",
-    "generator": "pollinations.ai (Flux)",
-    "seed": 47,
-    "promptSource": "ART-DIRECTION.md"
-  },
-  {
-    "slot": "room-courtyard",
-    "source": "ai-generated",
-    "generator": "pollinations.ai (Flux)",
-    "seed": 11,
-    "promptSource": "ART-DIRECTION.md"
-  },
-  {
-    "slot": "room-terrace",
-    "source": "ai-generated",
-    "generator": "pollinations.ai (Flux)",
-    "seed": 11,
-    "promptSource": "ART-DIRECTION.md"
-  }
-]
+{
+  "source": "Client-supplied originals, intake/alaia/photos/",
+  "owner": "Alaïa Surf School",
+  "processing": "Centre-gravity cover crop to the slot ratio, WebP q80; hero also pre-encoded to AVIF/WebP/JPEG under public/hero/. No upscaling.",
+  "slots": [
+    {
+      "slot": "hero",
+      "ratio": "21/9",
+      "output": "public/hero/hero-wide-{1024,1280,1440}.{avif,webp}, hero-wide-1440.jpg, src/assets/photos/hero.webp",
+      "original": "imgi_40_468841928_18031367378584443_7301073767678554508_n.jpg"
+    },
+    {
+      "slot": "hero-portrait",
+      "ratio": "3/4",
+      "output": "public/hero/hero-portrait-{640,900,1200}.{avif,webp}, hero-portrait-1200.jpg, src/assets/photos/hero-portrait.webp",
+      "original": "imgi_35_468793344_18031369151584443_1770431803727943764_n.jpg"
+    },
+    {
+      "slot": "place",
+      "ratio": "3/2",
+      "output": "src/assets/photos/place.webp",
+      "original": "imgi_26_476868594_18039894440584443_4292292012113720754_n.jpg"
+    },
+    {
+      "slot": "lesson-lineup",
+      "ratio": "4/5",
+      "output": "src/assets/photos/lesson-lineup.webp",
+      "original": "imgi_39_468765789_18031367504584443_7832929198442095310_n.jpg"
+    },
+    {
+      "slot": "boards-dawn",
+      "ratio": "4/5",
+      "output": "src/assets/photos/boards-dawn.webp",
+      "original": "imgi_27_472006320_18035442572584443_7697263712321390416_n.jpg"
+    },
+    {
+      "slot": "shorebreak-walk",
+      "ratio": "4/5",
+      "output": "src/assets/photos/shorebreak-walk.webp",
+      "original": "imgi_32_469350697_18031927061584443_5764869184337385138_n.jpg"
+    },
+    {
+      "slot": "warmup-sand",
+      "ratio": "4/5",
+      "output": "src/assets/photos/warmup-sand.webp",
+      "original": "imgi_11_681486668_18089933261584443_3513309193705658659_n.jpg"
+    },
+    {
+      "slot": "common-room",
+      "ratio": "16/9",
+      "output": "src/assets/photos/common-room.webp",
+      "original": "imgi_6_622483690_18206373694321220_6510533756469744060_n.jpg"
+    },
+    {
+      "slot": "og-background",
+      "ratio": "1200/630",
+      "output": "src/assets/og-background.jpg",
+      "original": "imgi_40_468841928_18031367378584443_7301073767678554508_n.jpg"
+    }
+  ]
+}

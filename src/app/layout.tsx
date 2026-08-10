@@ -5,7 +5,7 @@ import { SmoothScroll } from "@/components/animations/SmoothScroll";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
-import { SEO, SITE } from "@/lib/content";
+import { SEO, SITE, TESTIMONIALS_COPY } from "@/lib/content";
 import { fontBody, fontDisplay, fontMono } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 
@@ -56,19 +56,35 @@ export const viewport: Viewport = {
  */
 const JS_ENABLED_SCRIPT = `document.documentElement.classList.add('js')`;
 
-/** Structured data — hospitality search results lean heavily on this. */
-const lodgingJsonLd = {
+/**
+ * Structured data. `SportsActivityLocation` rather than `LodgingBusiness`:
+ * this business sells coaching, not beds, and the wrong type puts the listing
+ * in the wrong search surface entirely.
+ *
+ * The aggregate rating is the client's own published figure. It is emitted
+ * because it is real; if a future tenant has no reviews, drop the key rather
+ * than shipping a zero — Google penalises an empty rating harder than none.
+ */
+const businessJsonLd = {
   "@context": "https://schema.org",
-  "@type": "LodgingBusiness",
+  "@type": "SportsActivityLocation",
   name: SITE.name,
   description: SITE.description,
   url: SITE.url,
   email: SITE.email,
+  telephone: SITE.phone,
   address: {
     "@type": "PostalAddress",
+    streetAddress: SITE.location,
     addressLocality: SITE.locality,
     addressRegion: SITE.region,
     addressCountry: SITE.countryCode,
+  },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: TESTIMONIALS_COPY.ratingValue,
+    reviewCount: TESTIMONIALS_COPY.reviewCount,
+    bestRating: 5,
   },
   amenityFeature: SEO.amenities.map((name) => ({
     "@type": "LocationFeatureSpecification",
@@ -90,7 +106,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: JS_ENABLED_SCRIPT }} />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(lodgingJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(businessJsonLd) }}
         />
       </head>
       <body className="min-h-dvh bg-background text-foreground antialiased">

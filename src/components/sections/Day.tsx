@@ -12,16 +12,15 @@ function MomentRow({ moment }: MomentRowProps): React.JSX.Element {
   return (
     <article className="group grid gap-4 border-t border-haze/30 py-9 sm:grid-cols-12 sm:gap-8">
       {/*
-        Time is the structural marker here, and it is legitimate: the day is a
-        real sequence and the hour carries information the reader needs.
-        Arbitrary 01 / 02 / 03 numbering would not.
+        The phase of the day is the structural marker, and it is legitimate:
+        the day is a real sequence and the reader needs to know where in it
+        they are. Arbitrary 01 / 02 / 03 numbering would not be. It is not a
+        <time> and carries no clock value, because the school does not promise
+        one — sessions move with the swell.
       */}
-      <time
-        className="font-mono text-sm text-ochre-ink sm:col-span-2"
-        data-numeric
-      >
-        {moment.time}
-      </time>
+      <span className="label-mono text-ochre-ink sm:col-span-2">
+        {moment.marker}
+      </span>
 
       <h3 className="font-display text-2xl leading-tight text-basalt sm:col-span-3 sm:text-3xl">
         {moment.title}
@@ -56,7 +55,7 @@ export function Day(): React.JSX.Element {
 
         <Reveal className="mt-20" staggerChildren stagger={0.06}>
           {DAY.map((moment) => (
-            <MomentRow key={moment.time} moment={moment} />
+            <MomentRow key={moment.marker} moment={moment} />
           ))}
         </Reveal>
 

@@ -1,11 +1,11 @@
-import type { StaticImageData } from "next/image";
+import type { StaticImageData } from 'next/image';
 
-import place from "@/assets/photos/place.jpg";
-import roomBed from "@/assets/photos/room-bed.jpg";
-import roomCourtyard from "@/assets/photos/room-courtyard.jpg";
-import roomNiche from "@/assets/photos/room-niche.jpg";
-import roomTerrace from "@/assets/photos/room-terrace.jpg";
-import table from "@/assets/photos/table.jpg";
+import boardsDawn from '@/assets/photos/boards-dawn.webp';
+import commonRoom from '@/assets/photos/common-room.webp';
+import lessonLineup from '@/assets/photos/lesson-lineup.webp';
+import place from '@/assets/photos/place.webp';
+import shorebreakWalk from '@/assets/photos/shorebreak-walk.webp';
+import warmupSand from '@/assets/photos/warmup-sand.webp';
 
 /**
  * Photographs keyed by `PhotoBrief.id`.
@@ -15,11 +15,11 @@ import table from "@/assets/photos/table.jpg";
  * `blurDataURL`. That gives a true blur-up on load and makes layout shift
  * impossible — neither is available when you pass a `/public` string.
  *
- * Slots are named for **what the frame contains** — `room-terrace`, not
- * `room-tamri`. Room names change with every client this template is pitched
- * to; the photograph of a terrace is still a photograph of a terrace. Keying on
- * content is what lets `property.config.ts` be rewritten end to end without
- * orphaning a single image.
+ * Slots are named for **what the frame contains** — `lesson-lineup`, not
+ * `group-class`. Package names change with every client this template is
+ * pitched to; a photograph of a class on the sand is still a photograph of a
+ * class on the sand. Keying on content is what lets `property.config.ts` be
+ * rewritten end to end without orphaning a single image.
  *
  * The hero is deliberately absent. It is art-directed across breakpoints
  * (a 21/9 frame on desktop, a separately composed 3/4 frame on phones), which
@@ -30,11 +30,11 @@ import table from "@/assets/photos/table.jpg";
  */
 export const PHOTOS: Readonly<Record<string, StaticImageData>> = {
   place,
-  table,
-  "room-bed": roomBed,
-  "room-niche": roomNiche,
-  "room-courtyard": roomCourtyard,
-  "room-terrace": roomTerrace,
+  'common-room': commonRoom,
+  'lesson-lineup': lessonLineup,
+  'boards-dawn': boardsDawn,
+  'shorebreak-walk': shorebreakWalk,
+  'warmup-sand': warmupSand,
 };
 
 /**
@@ -43,15 +43,15 @@ export const PHOTOS: Readonly<Record<string, StaticImageData>> = {
  */
 export const PHOTO_ALT: Readonly<Record<string, string>> = {
   place:
-    "Ochre and whitewashed houses stacked on a hillside above a beach, fishing boats drawn up on the sand below.",
-  table:
-    "A long table seen from above, mid-meal: shared dishes, candles and glasses spread across the whole surface.",
-  "room-bed":
-    "Hard parallel stripes of morning sunlight falling across rumpled bed linen.",
-  "room-niche":
-    "A deep rectangular niche cut into a thick sand-coloured plaster wall, lit from one side.",
-  "room-courtyard":
-    "A tree throwing dappled shade across a whitewashed courtyard wall beside a blue-painted door.",
-  "room-terrace":
-    "Low wicker chairs on a terrace facing a hazy sea, the horizon a flat band behind them.",
+    'A surf class sitting on the sand with their arms raised, the low white buildings of the town stacked along the shore behind them.',
+  'common-room':
+    "The school's common room: low pale sofas around a wooden table, a rack of surfboards along the right-hand wall, and glass the full width of the room opening onto the garden.",
+  'lesson-lineup':
+    'Soft-top surfboards laid out in a row on wet sand, a group of students in yellow rash vests sitting beside them before the session.',
+  'boards-dawn':
+    'Two surfboards resting on the road outside the school at first light, rash vests hung on posts beside them and the sea a flat band beyond.',
+  'shorebreak-walk':
+    'An instructor and two children wading into the shorebreak carrying blue soft-top boards, a headland in the haze behind them.',
+  'warmup-sand':
+    'A surf instructor on the beach mid warm-up, arms crossed in front of her and eyes closed, the rest of the group out of focus behind.',
 };

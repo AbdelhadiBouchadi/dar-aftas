@@ -5,11 +5,11 @@
  * typed data rather than inline strings. No `any` anywhere in this project.
  *
  * The site is built to be re-skinned per client: one `PropertyConfig` object in
- * `@/lib/property.config` supplies the identity, the coastline, the rooms, the
- * breaks and every line of section copy. `@/lib/content` re-exports it under the
- * names the sections import, so a new prospect is a config edit and nothing
+ * `@/lib/property.config` supplies the identity, the coastline, the packages,
+ * the breaks and every line of section copy. `@/lib/content` re-exports it under
+ * the names the sections import, so a new prospect is a config edit and nothing
  * else. These types are what make that swap fail the build when it is
- * incomplete rather than silently ship a half-renamed house.
+ * incomplete rather than silently ship a half-renamed business.
  */
 
 /** Aspect ratios we art-direct against. Kept as a union so a typo fails the build. */
@@ -28,8 +28,8 @@ export interface PhotoBrief {
   /**
    * Stable slot id, also used as the GSAP parallax target key and the lookup
    * into `@/lib/photos`. Slots are named for what the frame *contains*
-   * (`room-terrace`), never for the room that happens to use it — so renaming a
-   * room in the config never orphans a photograph.
+   * (`lesson-lineup`), never for the package that happens to use it — so
+   * renaming a package in the config never orphans a photograph.
    */
   readonly id: string;
   /** What the frame must contain. Written for a photographer, not a developer. */
@@ -39,18 +39,29 @@ export interface PhotoBrief {
   readonly ratio: AspectRatio;
 }
 
-/** A guest room in the house. */
-export interface Room {
+/** A bookable package. */
+export interface Package {
   readonly id: string;
   readonly name: string;
-  /** Berber/Darija meaning or provenance of the room name. */
+  /** One line on who it is for, in the school's voice. */
   readonly meaning: string;
-  readonly sleeps: number;
-  readonly aspect: string;
-  /** Two or three concrete material details — the things guests actually remember. */
-  readonly details: readonly string[];
-  readonly nightlyFrom: number;
+  /** Ability banding, printed as sold: "All Levels", "Beginner". */
+  readonly level: string;
+  /** Water time as sold, e.g. "2 hours a day". */
+  readonly duration: string;
+  /** What is actually included. Concrete items, not benefits. */
+  readonly includes: readonly string[];
+  /** Price per person per day, in euro. */
+  readonly priceEur: number;
   readonly photo: PhotoBrief;
+}
+
+/** A published review, quoted verbatim in the language it was written in. */
+export interface Testimonial {
+  readonly quote: string;
+  readonly author: string;
+  /** BCP 47 tag for the quote — reviews here are French on an English page. */
+  readonly lang: string;
 }
 
 /** Difficulty banding for a surf break. */
@@ -72,10 +83,14 @@ export interface SurfBreak {
   readonly note: string;
 }
 
-/** One moment in the tide-governed day. */
+/** One phase of the day. */
 export interface DayMoment {
-  /** 24h time, e.g. "06:12". The day is a real sequence, so time is the marker. */
-  readonly time: string;
+  /**
+   * The phase this row belongs to — "Morning", "Mid-Day". Deliberately not a
+   * clock time: sessions here move with the swell and the tide, so a printed
+   * hour would be a promise the ocean has not agreed to.
+   */
+  readonly marker: string;
   readonly title: string;
   readonly body: string;
 }
@@ -111,7 +126,7 @@ export interface Note {
 
 /** Who the property is. Drives metadata, structured data and the social card. */
 export interface PropertyIdentity {
-  /** Full trading name, e.g. "Dar Aftas". */
+  /** Full trading name, e.g. "Alaïa Surf School". */
   readonly name: string;
   /** Short mark set in Bodoni at hero scale. Keep it to one word. */
   readonly wordmark: string;
@@ -182,9 +197,17 @@ export interface ManifestoCopy {
   readonly pullQuote: string;
 }
 
-export interface RoomsCopy extends SectionCopy {
-  /** What the rate includes, and anything held back from the list above. */
+export interface PackagesCopy extends SectionCopy {
+  /** What every price includes, and anything held back from the list above. */
   readonly footnote: string;
+}
+
+export interface TestimonialsCopy extends SectionCopy {
+  /** Aggregate score as published by the review source. */
+  readonly ratingValue: number;
+  readonly reviewCount: number;
+  /** Where the score comes from. Printed, because an unsourced score is noise. */
+  readonly source: string;
 }
 
 export interface PointsCopy extends SectionCopy {
@@ -229,12 +252,14 @@ export interface PropertyConfig {
   readonly heroPhoto: PhotoBrief;
   readonly placePhoto: PhotoBrief;
   readonly manifesto: ManifestoCopy;
-  readonly roomsCopy: RoomsCopy;
-  readonly rooms: readonly Room[];
+  readonly packagesCopy: PackagesCopy;
+  readonly packages: readonly Package[];
   readonly pointsCopy: PointsCopy;
   readonly breaks: readonly SurfBreak[];
   readonly dayCopy: DayCopy;
   readonly day: readonly DayMoment[];
   readonly table: TableCopy;
+  readonly testimonialsCopy: TestimonialsCopy;
+  readonly testimonials: readonly Testimonial[];
   readonly enquire: EnquireCopy;
 }

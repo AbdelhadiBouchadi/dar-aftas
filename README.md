@@ -3,9 +3,9 @@
 A production marketing site for small hospitality on the Agadir coast — surf
 camps, guest houses, riads and lodges from Anza north to Imsouane.
 
-It ships as a working demo property (**Dar Aftas**, fictional, deliberately not
-tied to one village) and is built to be re-skinned per client: everything that
-identifies a property lives in one config object. See
+It is currently skinned for a real client — **Alaïa Surf School**, Tawenza
+Square, Taghazout — and is built to be re-skinned per prospect: everything that
+identifies a business lives in one config object. See
 [Re-skinning for a client](#re-skinning-for-a-client).
 
 Next.js 16 (App Router) · React 19 · TypeScript (strict) · Tailwind v4 · GSAP ·
@@ -35,19 +35,20 @@ property-specific string, so a new prospect is a config edit and nothing else.
 | `identity` | Name, wordmark, contact, URL, metadata, JSON-LD, social card |
 | `coast` | Latitude/longitude and shore aspect — **the live almanac retargets itself** |
 | `seo` | Keywords and the `amenityFeature` list in structured data |
-| `rooms`, `breaks`, `day` | The property's actual rooms, waves and rhythm |
-| `manifesto`, `roomsCopy`, `pointsCopy`, `dayCopy`, `table`, `enquire` | Every line of section copy |
+| `packages`, `breaks`, `day` | What the business actually sells, surfs and does |
+| `testimonials` | Published reviews, quoted verbatim in their own language |
+| `manifesto`, `packagesCopy`, `pointsCopy`, `dayCopy`, `table`, `testimonialsCopy`, `enquire` | Every line of section copy |
 | `almanacFallback` | Static readings shown if a forecast source is unreachable |
 
 `src/lib/content.ts` re-exports the config under the names sections import
-(`SITE`, `ROOMS`, `BREAKS`…), so components never reach into the config's shape.
-The types in `src/lib/types.ts` make an incomplete swap **fail the build**
-rather than ship a half-renamed house.
+(`SITE`, `PACKAGES`, `BREAKS`…), so components never reach into the config's
+shape. The types in `src/lib/types.ts` make an incomplete swap **fail the
+build** rather than ship a half-renamed business.
 
 Photography binds by slot id in `src/lib/photos.ts`. Slots are named for what
-the frame contains (`room-terrace`), never for the room using it — so rewriting
-every room name orphans no images. An unbound slot renders its art-direction
-brief, so an unshot property is still presentable to its own owner.
+the frame contains (`lesson-lineup`), never for the package using it — so
+rewriting every package name orphans no images. An unbound slot renders its
+art-direction brief, so an unshot business is still presentable to its owner.
 
 ---
 
@@ -240,10 +241,12 @@ loading state already in place.
 - **`lenis` instead of `@studio-freight/lenis`.** The Studio Freight package is
   deprecated and frozen at 1.0.42; the library moved to the bare `lenis`
   package (1.3.26). Identical API.
-- **Content is fiction, and deliberately so.** Dar Aftas does not exist. Room
-  names, rates and copy are written to be plausible anywhere on this coast, so
-  a prospect can see their own house in it. Replace via
-  `property.config.ts` before any launch.
+- **Content is now real, and must be checked before launch.** The name, phone,
+  packages, prices, daily schedule, rating and the three quoted reviews all come
+  from `intake/alaia/data.json`. Two fields could not be sourced from it and are
+  marked `TO CONFIRM` in `property.config.ts`: the email address (read off the
+  school's own printed flyers) and the canonical URL. Confirm both with the
+  client before any launch.
 - **The almanac is the exception — it is genuinely live.** Swell, wind, tides,
   sunrise and sea temperature are real Open-Meteo readings for the configured
   coordinates, refreshed hourly. The static `almanacFallback` values are the

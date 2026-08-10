@@ -7,14 +7,16 @@ import type {
   EnquireCopy,
   ManifestoCopy,
   NavItem,
+  Package,
+  PackagesCopy,
   PhotoBrief,
   PointsCopy,
   PropertyIdentity,
-  Room,
-  RoomsCopy,
   SeoConfig,
   SurfBreak,
   TableCopy,
+  Testimonial,
+  TestimonialsCopy,
 } from "@/lib/types";
 
 /**
@@ -22,9 +24,9 @@ import type {
  *
  * This file holds no data of its own — it names the pieces of `PROPERTY` that
  * sections consume. The indirection is the point: components import stable
- * names (`SITE`, `ROOMS`, `BREAKS`) and never reach into the config's shape, so
- * re-skinning the site for a new client is one file (`@/lib/property.config`)
- * and zero component edits.
+ * names (`SITE`, `PACKAGES`, `BREAKS`) and never reach into the config's shape,
+ * so re-skinning the site for a new client is one file
+ * (`@/lib/property.config`) and zero component edits.
  */
 
 export const SITE: PropertyIdentity = PROPERTY.identity;
@@ -42,8 +44,8 @@ export const PLACE_PHOTO: PhotoBrief = PROPERTY.placePhoto;
 
 export const MANIFESTO: ManifestoCopy = PROPERTY.manifesto;
 
-export const ROOMS_COPY: RoomsCopy = PROPERTY.roomsCopy;
-export const ROOMS: readonly Room[] = PROPERTY.rooms;
+export const PACKAGES_COPY: PackagesCopy = PROPERTY.packagesCopy;
+export const PACKAGES: readonly Package[] = PROPERTY.packages;
 
 export const POINTS_COPY: PointsCopy = PROPERTY.pointsCopy;
 export const BREAKS: readonly SurfBreak[] = PROPERTY.breaks;
@@ -52,5 +54,8 @@ export const DAY_COPY: DayCopy = PROPERTY.dayCopy;
 export const DAY: readonly DayMoment[] = PROPERTY.day;
 
 export const TABLE: TableCopy = PROPERTY.table;
+
+export const TESTIMONIALS_COPY: TestimonialsCopy = PROPERTY.testimonialsCopy;
+export const TESTIMONIALS: readonly Testimonial[] = PROPERTY.testimonials;
 
 export const ENQUIRE: EnquireCopy = PROPERTY.enquire;

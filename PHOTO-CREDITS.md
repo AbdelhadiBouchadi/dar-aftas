@@ -1,80 +1,67 @@
 # Photography credits
 
-Two sources:
+**Every photograph on this site is the client's own.** The stock and
+AI-generated placeholders that filled these slots during the template phase
+have been deleted, not merely unbound — nothing on the page depicts a business
+other than Alaïa Surf School.
 
-- **Four photographs from Pexels** — hero, hero-portrait, place, table — used
-  under the [Pexels License](https://www.pexels.com/license/): free for
-  commercial use, no attribution required, modification permitted. Credited
-  below anyway, as good practice.
-- **Four AI-generated room frames** — see [Generated rooms](#generated-rooms).
+Sources are the 37 originals supplied at `intake/alaia/photos/`. Processed
+files live at `src/assets/photos/*.webp` (cropped to the layout's reserved
+ratios, WebP q80) and `public/hero/*` (pre-encoded AVIF/WebP/JPEG for the
+art-directed hero). Machine-readable manifest:
+`src/assets/photos/CREDITS.json`.
 
-Sources are stored at `src/assets/photos/*.jpg` (cropped to the layout's
-reserved ratios) and `public/hero/*` (pre-encoded AVIF/WebP/JPEG for the
-art-directed hero). Machine-readable credits: `src/assets/photos/CREDITS.json`.
+| Slot | Ratio | Frame | Intake original |
+|---|---|---|---|
+| `hero` (wide) | 21/9 | A student up and riding, coach in the water behind | `imgi_40_468841928_…` |
+| `hero-portrait` | 3/4 | A class on the sand watching a lined-up swell | `imgi_35_468793344_…` |
+| `place` | 3/2 | Class on the beach, the town stacked behind | `imgi_26_476868594_…` |
+| `lesson-lineup` | 4/5 | Boards laid out, students beside them pre-session | `imgi_39_468765789_…` |
+| `boards-dawn` | 4/5 | Boards and rash vests at the frontage, first light | `imgi_27_472006320_…` |
+| `shorebreak-walk` | 4/5 | Coach walking two students into the shorebreak | `imgi_32_469350697_…` |
+| `warmup-sand` | 4/5 | Warm-up on the sand before the session | `imgi_11_681486668_…` |
+| `common-room` | 16/9 | The school's common room, board rack, glass wall | `imgi_6_622483690_…` |
 
-| Slot | Photographer | Source |
-|---|---|---|
-| `hero` | Jimmy Boos | [Surfers on the beach](https://www.pexels.com/photo/people-wearing-black-wetsuits-while-surfing-on-the-beach-12343310/) |
-| `hero-portrait` | Red Zeppelin | [Aerial surfer on the coastline](https://www.pexels.com/photo/aerial-view-of-surfer-on-the-jurassic-coastline-34596817/) |
-| `place` | Zak Mogel | [Beachfront with boats in **Taghazout**](https://www.pexels.com/photo/bustling-beachfront-with-boats-in-taghazout-37138791/) |
-| `table` | Askar Abayev | [Food on a decorated table](https://www.pexels.com/photo/food-on-decorated-table-during-party-5638752/) |
+`src/assets/photos/hero.webp` and `hero-portrait.webp` are the processed
+masters at full crop size. Nothing imports them — the hero is served from
+`public/hero/` through a real `<picture>` — but they are the reference the
+`public/hero/` ladder is derived from, and they belong beside the slots they
+came from.
 
 ## How these were chosen
 
-Candidates were pulled via the Pexels API across several query angles per slot,
-rendered as contact sheets, and judged against the brief in
-[ART-DIRECTION.md](./ART-DIRECTION.md). The hero finalists were additionally
-composited into a mock of the real hero — actual scrim, actual wordmark — because
-a square thumbnail cannot tell you whether the bottom-left survives the type.
+All 37 originals were rendered as labelled contact sheets and reviewed, then a
+twelve-frame shortlist was re-rendered at 620px for composition and crop
+safety. Selection was judged against [ART-DIRECTION.md](./ART-DIRECTION.md).
 
-`place` is the one literal match: it was shot in Taghazout.
+The hero was chosen on one criterion above the others: **the top half had to
+survive type.** The winning frame is open blue water across its entire upper
+half, so the wordmark, the nav and the almanac band read against it without
+the scrim having to be heavy enough to grey out the photograph.
 
-## Generated rooms
-
-The four room frames are **AI-generated**, not photographed.
-
-| Slot | Prompt source | Seed |
-|---|---|---|
-| `room-bed` | [ART-DIRECTION.md](./ART-DIRECTION.md) | 47 |
-| `room-niche` | ART-DIRECTION.md | 47 |
-| `room-courtyard` | ART-DIRECTION.md | 11 |
-| `room-terrace` | ART-DIRECTION.md | 11 |
-
-**Method.** Generated with [Pollinations](https://pollinations.ai) running
-Flux — free, no API key, no billing. Three seeds per room, selected on a
-contact sheet for matching light direction so the four read as one shoot. The
-prompts are the briefs from `ART-DIRECTION.md` plus a shared grade paragraph.
-
-**Why not Gemini.** Every Gemini image model returned HTTP 429 on the free
-tier; image generation there requires billing. AI Horde was tried as a
-higher-resolution alternative — it offers RealESRGAN 4× post-processing — but
-anonymous requests are capped at 790×790 and queued at roughly 17 minutes per
-image, which is over an hour for four with no quality guarantee.
-
-**The real limitation: resolution.** Pollinations hard-caps output at ~686px
-on the long edge regardless of the size requested. Each winner is upscaled to
-its slot size (≈2.1×) with a Lanczos-3 kernel plus unsharp masking. Smooth
-subjects — plaster, linen, shade — interpolate well and the site's film grain
-restores high-frequency texture, so at display size the result holds. **Under
-1:1 scrutiny it is visibly soft**, particularly on fine detail like shutter
-louvres and foliage. No processing invents detail the source never had.
-
-Saturation is also knocked back to 0.84 during ingestion: Flux renders
-Mediterranean blues far harder than the Pexels frames beside them, and the CSS
-grade alone could not close the gap.
-
-**Licensing.** Flux outputs are generally usable commercially, and this is a
-prototype. For a real client deliverable, replace these with commissioned
-photography of the actual property — an AI-generated interior presented as a
-bookable room is misleading regardless of licence.
+Crops are centre-gravity cover crops, capped at the widest the source can fill
+without upscaling. Every crop was rendered back out and reviewed before the
+slots were bound.
 
 ## Honest limitations
 
-**The rooms are generated, and capped at 686px.** See above. The upgrade path,
-cheapest first: enable billing on the Gemini key (~$0.50 for all four, prompts
-already written), or Midjourney with `--ar 4:5` / `--ar 3:2`, or a real shoot —
-the only option that produces the actual property.
+**Resolution.** These are social-media originals, and none exceeds 1440px on
+the axis the crop needs. The wide hero is therefore 1440×617 and the `srcSet`
+stops there rather than advertising widths that would only be upscales. On a
+2560px display the browser will stretch it. It holds under the scrim and the
+film grain; it would not hold as a clean full-bleed frame. **A single
+commissioned wide frame of the point at dawn is the highest-value photographic
+upgrade available to this site.**
 
-**The table shot is not Moroccan food.** It is a communal overhead that reads
-correctly as "one table, one sitting", but the dishes are Western. Fine for a
-prototype; replace before any real client sees it as their own.
+**No editorial-grade wide ocean or coastline frame exists in the set.** The
+library is Instagram content: bright, midday, people at camera. The chosen
+frames are the ones that most nearly meet the brief, not ones that meet it.
+
+**Seven of the 37 are marketing posters** with baked-in text (Stage Surf, Black
+Friday, Wim Hof, Surf 'n' Yoga) and one is the logo lockup. These are
+unusable as photography and were excluded.
+
+**No food photograph exists in the set.** The Table section — which sells the
+€35 Surf & Dine package on breakfast and a shared lunch — is illustrated with
+the school's common room instead. It is the right room, but it is not the meal.
+A single overhead of the long table mid-lunch would close the gap.

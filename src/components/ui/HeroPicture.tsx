@@ -6,21 +6,24 @@ export interface HeroPictureProps {
 }
 
 const ALT =
-  'A surfer riding a long right-hand wave at dawn, the water ochre with suspended sand under a pale grey sky.';
+  'A young surfer in a yellow rash vest riding a small blue wave, his coach watching from the water behind him.';
 
 /**
  * The hero frame, art-directed across breakpoints.
  *
  * A 21/9 landscape composition is right on a desktop and destroys itself on a
- * phone — `object-cover` would crop a 2800×1200 frame to roughly its centre
- * fifth. So phones get a separately composed 3/4 frame (an aerial of the same
- * ochre sand-water) rather than a squeezed version of the wide one.
+ * phone — `object-cover` would crop the wide frame to roughly its centre fifth.
+ * So phones get a separately composed 3/4 frame (a class on the sand watching
+ * the lineup) rather than a squeezed version of the wide one.
  *
  * `next/image` scales a single source and cannot express that, so this is a
  * real <picture>: the browser evaluates `media` before fetching and downloads
  * exactly one file. AVIF first, WebP next, JPEG as the floor.
  *
- * At 2800px the AVIF is 111KB — smaller than the 640px portrait JPEG would be.
+ * The advertised widths stop at the largest crop the client's originals can
+ * actually fill — 1440px wide, 1200px portrait. Listing 2800w here would only
+ * buy an upscale, and a browser asked to choose between real pixels and
+ * invented ones should never be shown the invented ones.
  */
 export function HeroPicture({
   className,
@@ -35,13 +38,13 @@ export function HeroPicture({
         media="(min-width: 1024px)"
         type="image/avif"
         sizes="100vw"
-        srcSet="/hero/hero-wide-1280.avif 1280w, /hero/hero-wide-1920.avif 1920w, /hero/hero-wide-2800.avif 2800w"
+        srcSet="/hero/hero-wide-1024.avif 1024w, /hero/hero-wide-1280.avif 1280w, /hero/hero-wide-1440.avif 1440w"
       />
       <source
         media="(min-width: 1024px)"
         type="image/webp"
         sizes="100vw"
-        srcSet="/hero/hero-wide-1280.webp 1280w, /hero/hero-wide-1920.webp 1920w, /hero/hero-wide-2800.webp 2800w"
+        srcSet="/hero/hero-wide-1024.webp 1024w, /hero/hero-wide-1280.webp 1280w, /hero/hero-wide-1440.webp 1440w"
       />
 
       {/* Phone and tablet: portrait frame */}
@@ -57,10 +60,10 @@ export function HeroPicture({
       />
 
       <img
-        src="/hero/hero-wide-2800.jpg"
+        src="/hero/hero-wide-1440.jpg"
         alt={alt}
-        width={2800}
-        height={1200}
+        width={1440}
+        height={617}
         // This is the LCP element on every visit.
         fetchPriority="high"
         decoding="async"

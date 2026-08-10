@@ -158,7 +158,7 @@ export function SiteHeader(): React.JSX.Element {
               }}
               className="label-mono inline-block border border-sand/45 px-5 py-3 text-sand transition-colors duration-200 hover:border-sand hover:bg-sand hover:text-basalt"
             >
-              Enquire
+              Book
             </a>
           </Magnetic>
 
@@ -224,7 +224,7 @@ export function SiteHeader(): React.JSX.Element {
             }}
             className="label-mono mt-12 inline-block border border-sand/40 px-7 py-4 text-sand"
           >
-            Enquire
+            Book
           </a>
         </nav>
       </div>

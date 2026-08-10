@@ -21,7 +21,7 @@ export function SiteFooter(): React.JSX.Element {
 
           <div className="grid grid-cols-2 gap-x-10 gap-y-12 sm:grid-cols-3">
             <div>
-              <h2 className="label-mono mb-5 text-ochre-light">The House</h2>
+              <h2 className="label-mono mb-5 text-ochre-light">The School</h2>
               <ul className="flex flex-col gap-3">
                 {NAV_ITEMS.map((item) => (
                   <li key={item.href}>

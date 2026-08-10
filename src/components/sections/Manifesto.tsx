@@ -8,7 +8,7 @@ import { MANIFESTO, PLACE_PHOTO } from '@/lib/content';
 /** Server Component — animation lives entirely in the leaf wrappers. */
 export function Manifesto(): React.JSX.Element {
   return (
-    <section id="house" className="grain relative bg-sand py-section">
+    <section id="school" className="grain relative bg-sand py-section">
       <div className="gutter">
         <div className="flex items-center gap-4">
           <span className="label-mono text-ochre-ink">{MANIFESTO.eyebrow}</span>
