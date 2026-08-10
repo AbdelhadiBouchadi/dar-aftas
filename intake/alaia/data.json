@@ -1,0 +1,48 @@
+{
+  "business": {
+    "title": "Alaïa Surf School",
+    "tagline": "Authentic Moroccan Surf Experiences",
+    "phone": "+212 6 64 08 53 28",
+    "location": "Tawenza Square, Taghazout, Morocco",
+    "totalScore": 4.9,
+    "reviewsCount": 46
+  },
+  "brand_vibe": "Professional local coaching, authentic Berber hospitality, and a community that feels like home. Focus on world-class point breaks and high-quality gear. Tone should be welcoming, expert, and deeply connected to the local surf culture.",
+  "packages": [
+    {
+      "name": "Group Surf Class",
+      "price_eur": 25,
+      "description": "2 hours of group coaching per day. Includes transfer to the best spot, towel, and premium surfing equipment.",
+      "level": "All Levels"
+    },
+    {
+      "name": "Surf & Dine",
+      "price_eur": 35,
+      "description": "Kick off with a healthy breakfast, catch waves with expert instructors, and unwind with a refreshing shower and a shared lunch.",
+      "level": "All Levels"
+    },
+    {
+      "name": "Private Surf Lesson",
+      "price_eur": 50,
+      "description": "3 hours of private, one-on-one coaching per day. Includes spot transfer, towel, and high-quality equipment.",
+      "level": "All Levels"
+    },
+    {
+      "name": "Surf & Yoga Package",
+      "price_eur": 50,
+      "description": "The perfect balance of adventure and relaxation. Includes surf coaching, surfboard, wetsuit, and a post-surf yoga session.",
+      "level": "All Levels"
+    }
+  ],
+  "daily_schedule": {
+    "Morning": "Healthy Breakfast & Wave Check",
+    "Mid-Day": "Surf Sessions (Group or Private) & Transfers to Spots",
+    "Afternoon": "Shared Lunch & Free Time",
+    "Evening": "Yoga Shala Sessions & Family Dinners (Most Evenings)"
+  },
+  "testimonials": [
+    "Très bonne découverte du surf. Première fois que j'en faisais. Taha était génial pour l'apprentissage. - Jean-Yves Muzelet",
+    "Superbe expérience vécue entre amis pendant 3 jours. Khaoula s'assurait toujours par messages du bon déroulé des séances. Nous avons eu Abdel, le meilleur des coach ! - Marie Blanc",
+    "Instructeur très sympathique, matériel et combinaison propres rincées et belle qualité ! On recommande. - M H"
+  ]
+}
