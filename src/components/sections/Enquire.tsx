@@ -2,7 +2,7 @@ import { ArrowUpRight } from 'lucide-react';
 
 import { Reveal } from '@/components/animations/Reveal';
 import { RevealText } from '@/components/animations/RevealText';
-import { ENQUIRE, SITE } from '@/lib/content';
+import { ENQUIRE, REVIEWS, SITE } from '@/lib/content';
 
 /**
  * Server Component.
@@ -71,6 +71,34 @@ export function Enquire(): React.JSX.Element {
               aria-hidden="true"
             />
           </a>
+        </Reveal>
+
+        {/*
+          Aggregate scores, not testimonials. Each one prints its platform and
+          the number of ratings behind it, because a score without a sample size
+          is decoration — and because every figure here is one a reader can go
+          and check. A pull quote would need a real review to transcribe.
+        */}
+        <Reveal className="mt-16 border-t border-haze/30 pt-8">
+          <h3 className="label-mono text-basalt">{ENQUIRE.reviewsLabel}</h3>
+          <dl className="mt-6 grid gap-8 sm:grid-cols-3">
+            {REVIEWS.map((review) => (
+              <div key={review.source}>
+                <dt className="label-mono text-haze-ink">{review.source}</dt>
+                <dd className="mt-2 flex items-baseline gap-2">
+                  <span
+                    className="font-mono text-2xl text-basalt"
+                    data-numeric
+                  >
+                    {review.score}
+                  </span>
+                  <span className="label-mono text-haze-ink" data-numeric>
+                    / {review.scale} · {review.count} reviews
+                  </span>
+                </dd>
+              </div>
+            ))}
+          </dl>
         </Reveal>
 
         <Reveal className="mt-12 grid gap-8 sm:grid-cols-3">

@@ -8,7 +8,7 @@ import type { PropertyConfig } from "@/lib/types";
  * This site is a template for small hospitality on the Agadir coast — surf
  * camps, guest houses, riads and lodges from Anza north to Imsouane. Everything
  * that identifies a property lives in this object: the name, the coastline the
- * live almanac reads from, the rooms, the breaks, and every line of section
+ * live almanac reads from, the stays, the breaks, and every line of section
  * copy. No component holds a property-specific string.
  *
  * To pitch a new prospect:
@@ -16,65 +16,99 @@ import type { PropertyConfig } from "@/lib/types";
  *   1. Edit `identity` — name, wordmark, contact, url.
  *   2. Edit `coast` — the real latitude/longitude of the house, and the bearing
  *      its shore faces. The almanac band retargets itself; nothing else to do.
- *   3. Edit `rooms` and `breaks` to what they actually have and actually surf.
+ *   3. Edit `stays` and `breaks` to what they actually sell and actually surf.
  *   4. Rewrite the copy blocks in their voice.
  *   5. Drop photography into `src/assets/photos/` against the slot ids in
  *      `@/lib/photos`. Unbound slots render their art-direction brief, so an
  *      unshot property is still presentable.
  *
- * The demo property below — Dar Aftas — is deliberately fictional and
- * deliberately not tied to one village. It sits in Taghazout Bay because that
- * is the middle of the coast, and its rooms and breaks are named across the
- * whole stretch, so any prospect between Anza and Imsouane can see their own
- * house in it.
+ * ----------------------------------------------------------------------------
+ *  CURRENT OCCUPANT: Maghrib Nomads, Tamraght — a real prospect, not the demo.
+ * ----------------------------------------------------------------------------
+ *
+ * Sourced from `intake/maghrib-nomads/data.json`. That file is a research pass,
+ * not a briefing from the client, so its fields differ in how far they can be
+ * trusted. Anything below that was *not* in it is marked `TO CONFIRM` at the
+ * point of use. Two things are worth knowing before this goes in front of
+ * Youssef:
+ *
+ *   - **No daily schedule was captured.** The `day` block is written copy,
+ *     built to the intake's own instruction to put yoga alongside the surf.
+ *     Every time in it is a proposal.
+ *   - **No review quotes were captured**, only aggregate scores. So there are
+ *     no testimonials here. `reviews` carries the scores with their platform
+ *     and sample size, which is the version a reader can verify. Do not
+ *     "fill in" guest quotes later — transcribe real ones or leave it.
  */
 export const PROPERTY: PropertyConfig = {
   identity: {
-    name: "Dar Aftas",
-    wordmark: "AFTAS",
-    tagline: "Guest house & surf — Taghazout Bay",
-    /** Tachelhit for the shore. Chosen because it names the whole coast, not one village. */
+    name: "Maghrib Nomads",
+    /** From `wordmark_candidates`. One word, because it is set at 17rem. */
+    wordmark: "NOMADS",
+    tagline: "Surf camp & guest house — Tamraght",
+    /**
+     * Maghrib is the Arabic for the west, and for sunset — the same root names
+     * this whole end of North Africa. It is a real etymology of their own name,
+     * which is what this line is for.
+     */
     provenance:
-      "Aftas — Tachelhit for the shore: the strip of sand between the argan and the Atlantic.",
+      "Maghrib — Arabic for the west, and for sundown: the hour, and the country it names. Nomads, because nobody here holds still for long.",
     description:
-      "A six-room guest house on the Taghazout Bay coast, Morocco. The house keeps the ocean's hours: swell, tide and first light decide the day.",
-    location: "Taghazout Bay, Agadir Ida-Outanane, Morocco",
-    locality: "Taghazout",
+      "A surf house in Tamraght, on the Agadir coast of Morocco. Stay, surf, and the local end of the country you would not find alone — with the day's session, the yoga mat and the evening table all decided by the water.",
+    location: "Tamraght, Agadir Ida-Outanane, Morocco 80023",
+    locality: "Tamraght",
     region: "Souss-Massa",
     countryCode: "MA",
     country: "Morocco",
-    coordinates: "30.5427° N, 9.7110° W",
-    email: "hello@daraftas.ma",
-    phone: "+212 6 00 00 00 00",
-    url: "https://daraftas.ma",
+    coordinates: "30.5102° N, 9.6775° W",
+    email: "contact@maghribnomads.com",
+    /** `phone_found_search` in the intake. Maps had no listing to cross-check. */
+    phone: "+212 602 474 458",
+    /**
+     * Their own domain. NOTE for outreach: as of the intake pass this URL
+     * bounced through a bot-check to an unrelated host before landing on a
+     * Booking.com page that was not taking reservations. That break is the
+     * pitch — verify it still reproduces before citing it.
+     */
+    url: "https://maghribnomads.com",
   },
 
   /**
-   * Taghazout Bay. The points along this stretch look roughly due west, which
-   * puts the land at 90° — the reciprocal the wind classifier measures against.
+   * Tamraght. The intake put the house at these coordinates, and the shore
+   * along this stretch looks the same way as the rest of the bay — due west,
+   * which puts the land at 90°, the reciprocal the wind classifier measures
+   * against.
    */
   coast: {
-    latitude: 30.5427,
-    longitude: -9.711,
+    latitude: 30.5101753,
+    longitude: -9.6775172,
     coastFacingDegrees: 270,
   },
 
   seo: {
     keywords: [
-      "Taghazout guest house",
+      "Tamraght surf camp",
       "surf camp Morocco",
-      "Taghazout Bay boutique hotel",
+      "surf and yoga Morocco",
       "Agadir surf accommodation",
-      "Imsouane surf stay",
-      "Morocco surf retreat",
+      "Taghazout Bay surf house",
+      "Banana Point surf",
     ],
-    amenities: ["Surf guiding", "Roof terrace", "Half board", "Board storage"],
+    /** From the Booking.com facility list plus the services the intake names. */
+    amenities: [
+      "Free WiFi",
+      "Rooftop terrace",
+      "Shared kitchen",
+      "Surf guiding",
+      "Yoga",
+      "Day trips",
+    ],
   },
 
   nav: [
     { label: "The House", href: "#house" },
-    { label: "Rooms", href: "#rooms" },
-    { label: "The Points", href: "#points" },
+    { label: "Stays", href: "#stays" },
+    { label: "The Waves", href: "#points" },
     { label: "A Day", href: "#day" },
     { label: "The Table", href: "#table" },
   ],
@@ -101,145 +135,180 @@ export const PROPERTY: PropertyConfig = {
 
   hero: {
     subtitle:
-      "Six rooms above the points at Taghazout Bay. The house keeps the ocean's hours — swell, tide and first light decide the day.",
-    ogStrapline: "Six rooms above the points",
+      "A surf house in Tamraght, five minutes from the point. Stay, surf, and the local half of Morocco you would never find on your own.",
+    ogStrapline: "Stay · Surf · Tamraght",
   },
 
   heroPhoto: {
     id: "hero",
     direction:
-      "The defining frame of the site. Dawn from the cliff path: a point peeling right, offshore spray lit from behind, two surfers small in a very large ocean. Cold blue water against warm ochre rock — the entire brand palette occurring naturally. Shot wide, horizon low, room at the top for the wordmark.",
-    tone: "dawn",
+      "The defining frame of the site. The line-up at chest height: a row of beginners sitting on their boards between sets, hands up, in flat grey Atlantic light. Cold water filling the frame, no horizon, no shoreline — the ocean as ground rather than backdrop, with clean water above the heads for the wordmark.",
+    tone: "ocean",
     ratio: "21/9",
   },
 
   placePhoto: {
     id: "place",
     direction:
-      "The village from above at last light. Flat roofs, satellite dishes, whitewash going gold, the Atlantic filling the top third of the frame. Documentary, not aspirational — this is a working fishing coast and it should look like one.",
-    tone: "dusk",
+      "The beach at Tamraght from the sand at mid-morning. Foam boards upright in a rough line, a lesson breaking up around them, the hills and the white village stacked behind. Documentary, not aspirational — this is a working beach and it should look like one.",
+    tone: "noon",
     ratio: "3/2",
   },
 
   manifesto: {
     eyebrow: "The House",
-    statement:
-      "Six rooms, one long table, and a terrace that faces the swell window.",
+    statement: "One house, one table, and a five-minute walk to the water.",
     body: [
-      "Dar Aftas is a working guest house, not a resort. The building is old Taghazout — thick walls, lime-washed tadelakt, a stair that climbs to the roof where everyone ends up at six in the evening. We rebuilt it slowly, with masons from Aourir, using the materials the coast already had.",
-      "There is no schedule pinned to the wall. There is a tide table. Breakfast is whenever the morning session ends, and it is still hot when you get back, because the kitchen has been watching the water too.",
+      "Maghrib Nomads is a surf house in Tamraght, the village between Aourir and Taghazout that most people drive through on the way to somewhere more famous. Youssef runs it. The rooms are white and plain and cool, the roof is where everyone ends up, and the wifi — improbably, and to the evident relief of every guest who has ever scored it — is faultless.",
+      "What is actually being sold here is not a bed. It is a week of somebody local deciding, each morning, which of six breaks is worth your time, and a table you eat at with the rest of the house afterwards.",
     ],
     pullQuote:
-      "There is no schedule pinned to the wall. There is a tide table.",
+      "Nobody here asks what you do. They ask what the tide is doing.",
   },
 
-  roomsCopy: {
-    eyebrow: "Rooms",
-    title: "Six rooms, each named for a piece of this coast.",
+  staysCopy: {
+    eyebrow: "Stays",
+    title: "Booked by the week, not by the night.",
     footnote:
-      "Rates are per room per night and include breakfast, dinner at the long table, and boards. Two remaining rooms — Tamraght and Imsouane — are held for longer stays and shown on request.",
+      "Prices are the listed lead-in per person in US dollars, as published on BookRetreats, and move with the season and the room. Everything else on this page — the guiding, the yoga, the table, the trips — is arranged direct. Write to us and we will price the week you actually want.",
   },
 
-  rooms: [
+  /**
+   * The two priced entries are verbatim from `packages_found` in the intake,
+   * including their prices, which is why the shorter week is the dearer one.
+   * That is what the listing says; it is not a transcription error, and it is
+   * the first thing to query with Youssef.
+   *
+   * The two unpriced entries are offerings the intake evidences (Booking.com
+   * and Hostelworld listings; the "Daytrip" highlight and `inferred_offering`)
+   * but for which no public rate was captured. They carry no number rather
+   * than a guessed one.
+   */
+  stays: [
     {
-      id: "anza",
-      name: "Anza",
-      meaning: "For the black-sand beach where the coast road leaves Agadir",
-      sleeps: 2,
-      aspect: "Sea-facing, first floor",
-      details: [
-        "Tadelakt bathroom, poured and polished by hand",
-        "Bed set to catch the offshore through the shutters",
-        "Private terrace, two chairs, no table — deliberate",
+      id: "surf-yoga-5",
+      name: "5 Day Surf & Yoga",
+      summary: "The one to book if you have never stood up on a board",
+      nights: 5,
+      level: "Beginners",
+      includes: [
+        "Daily lessons on the beach break, boards and suits included",
+        "Yoga alongside the surf, not instead of it",
+        "Bed, breakfast and the evening table",
       ],
-      nightlyFrom: 180,
+      priceFromUsd: 469,
+      priceNote: "per person, listed lead-in",
       photo: {
-        id: "room-bed",
+        id: "stay-surf",
         direction:
-          "Morning. Low sun through half-closed cedar shutters, hard stripes of light across a linen bed. Wet wetsuit hanging on the terrace rail, just in frame.",
-        tone: "dawn",
-        ratio: "4/5",
-      },
-    },
-    {
-      id: "imouran",
-      name: "Imouran",
-      meaning: "For the bay north of the village that goes glassy at dawn",
-      sleeps: 2,
-      aspect: "Corner room, second floor",
-      details: [
-        "Two aspects — sunrise over the hills, sunset on the water",
-        "Deep window seat cut into a metre of wall",
-        "Berber wool blanket from the Tuesday souk at Aourir",
-      ],
-      nightlyFrom: 210,
-      photo: {
-        id: "room-niche",
-        direction:
-          "Interior, late afternoon. Wide shot showing both windows at once. Warm plaster, cool ocean light — the whole palette in one frame.",
-        tone: "interior",
-        ratio: "3/2",
-      },
-    },
-    {
-      id: "imi-ouaddar",
-      name: "Imi Ouaddar",
-      meaning: "For the fishing village up the coast and its long empty sand",
-      sleeps: 3,
-      aspect: "Garden level, argan courtyard",
-      details: [
-        "Opens onto the courtyard and its one old argan tree",
-        "Coolest room in the house through August",
-        "Board rack at the door, rinse tap outside it",
-      ],
-      nightlyFrom: 165,
-      photo: {
-        id: "room-courtyard",
-        direction:
-          "Courtyard at midday. Argan tree throwing dappled shade on lime plaster. Three boards on the rack. Shot from inside the doorway looking out, so the room frames the light.",
+          "Gear and going. A guest carrying a floral longboard across the yard, pickups behind her stacked with foam boards, the whale mural on the house wall. Late morning, hard light, nobody looking at the camera.",
         tone: "noon",
         ratio: "4/5",
       },
     },
     {
-      id: "tamri",
-      name: "Tamri",
-      meaning: "For the river mouth an hour north, and the bananas behind it",
-      sleeps: 4,
-      aspect: "Roof suite, full terrace",
-      details: [
-        "Whole top floor, private stair, outdoor shower",
-        "Terrace of forty square metres facing due west",
-        "The only room you can watch the sets from, in bed",
+      id: "yoga-surf-8",
+      name: "8 Day Yoga & Surf Camp",
+      summary: "A longer week, weighted toward the mat",
+      nights: 8,
+      level: "All levels",
+      includes: [
+        "Eight days of guided surf across the Tamraght and Taghazout breaks",
+        "Daily yoga, on the sand when the wind allows",
+        "A day inland — the valley, the souk, or the dunes",
       ],
-      nightlyFrom: 340,
+      priceFromUsd: 409,
+      priceNote: "per person, listed lead-in",
       photo: {
-        id: "room-terrace",
+        id: "stay-yoga",
         direction:
-          "Golden hour on the roof terrace. Low furniture, long shadows, the ocean as a hard horizontal band behind. One person, small in frame, looking at the water — never at camera.",
+          "Yoga on the beach after a session. A line of guests in half-peeled wetsuits balanced in tree pose on wet sand, the shorebreak behind them, blue mid-morning sky. Joyful and slightly ragged — not a studio.",
+        tone: "noon",
+        ratio: "4/5",
+      },
+    },
+    {
+      id: "room-and-board",
+      name: "Bed & Board",
+      summary: "The house on its own, for as long as you want it",
+      level: "Any",
+      includes: [
+        "Private double, twin or single — all with the shared kitchen and roof",
+        "Breakfast, and dinner at the table when the house is eating",
+        "Board storage, rinse tap, and a lift to whichever break is working",
+      ],
+      priceNote: "Nightly rate on request",
+      photo: {
+        id: "stay-house",
+        direction:
+          "A room in the morning. White walls, a Berber blanket thrown across a made bed, straw hats and painted plates hung above the headboard, warm light coming through one small window. Plain, cool, and entirely real.",
+        tone: "interior",
+        ratio: "4/5",
+      },
+    },
+    {
+      id: "day-trips",
+      name: "The Inland Days",
+      summary: "For the flat spells, and the reason people extend",
+      level: "Any",
+      includes: [
+        "Paradise Valley and the red rock pools, an hour up the river road",
+        "The Tuesday souk at Aourir, and the argan co-operatives past it",
+        "The long one: the dunes, and dinner on a rug as the sun goes",
+      ],
+      priceNote: "Arranged in the house, priced per trip",
+      photo: {
+        id: "stay-trip",
+        direction:
+          "Dinner in the dunes at sundown. A low table dressed on a red rug, shared dishes and glasses laid out, leather poufs pushed around it, a camel train crossing the ridge behind against a flat orange sun.",
         tone: "dusk",
-        ratio: "3/2",
+        ratio: "4/5",
       },
     },
   ],
 
+  /**
+   * Aggregate scores only. `reviews_signal` in the intake carried no quotes, so
+   * there are none here — see the file header. Counts are as at the intake pass
+   * and should be refreshed before this is sent.
+   */
+  reviews: [
+    { source: "Booking.com", score: "7.3", scale: "10", count: 74 },
+    { source: "Google", score: "4.5", scale: "5", count: 58 },
+    { source: "BookRetreats", score: "5.0", scale: "5", count: 7 },
+  ],
+
   pointsCopy: {
-    eyebrow: "The Points",
-    title: "Most of the coast inside half an hour, and the rest worth the drive.",
+    eyebrow: "The Waves",
+    title: "Six breaks inside twenty minutes, and one worth the drive.",
     intro:
-      "Seven breaks we actually use, roughly in the order we tend to reach for them. Which one you surf on any given morning is decided the night before, by the buoy — not by us.",
+      "Tamraght sits in the middle of the best-served stretch of coast in Morocco. These are the breaks we actually use, roughly in the order we reach for them. Which one you surf on any given morning is decided the night before, by the buoy.",
     trackLabel: "Surf breaks near the house",
   },
 
+  /**
+   * Tamraght-centred, per the intake's instruction to reuse this coastline.
+   * Drive times are re-measured from Tamraght rather than Taghazout — Banana
+   * and Devil's Rock are on the doorstep here, and Anchor Point is not.
+   */
   breaks: [
     {
-      id: "anchor-point",
-      name: "Anchor Point",
+      id: "banana",
+      name: "Banana Point",
       hand: "Right",
-      level: "Advanced",
+      level: "Beginner",
+      minutesAway: 3,
+      worksOn: "NW 0.8–2m, low tide",
+      note: "The village's own wave, named for the plantations behind it. Sandy bottom, slow shoulder, and the place almost everyone in this house stands up for the first time. You can walk it.",
+    },
+    {
+      id: "devils-rock",
+      name: "Devil's Rock",
+      hand: "Right",
+      level: "Intermediate",
       minutesAway: 5,
-      worksOn: "NW 2–4m, 12s+",
-      note: "The wave that put this coast on the map. Four sections, and on the right day it joins them all the way to the boulders. Crowded by eight — which is why we leave at six.",
+      worksOn: "NW 1–2.5m, mid tide",
+      note: "Straight down from Tamraght, over rock and sand. Picks up more swell than Banana and empties out fast once the wind turns onshore. The default second session.",
     },
     {
       id: "panoramas",
@@ -248,41 +317,32 @@ export const PROPERTY: PropertyConfig = {
       level: "Intermediate",
       minutesAway: 7,
       worksOn: "NW 1–2.5m, any period",
-      note: "Softer point break over sand and rock, between Taghazout and Tamraght. Where our guiding happens most mornings. Forgiving take-off, long wall, easy paddle back.",
+      note: "Softer point break between here and Taghazout, and where most of our guiding happens. Forgiving take-off, a long wall, and an easy paddle back that matters more than beginners expect.",
     },
     {
-      id: "banana",
-      name: "Banana Point",
+      id: "anchor-point",
+      name: "Anchor Point",
       hand: "Right",
-      level: "Beginner",
-      minutesAway: 11,
-      worksOn: "NW 0.8–2m, low tide",
-      note: "Where first-timers stand up, below Aourir. Sandy bottom, slow shoulder, and the plantations behind it that give it the name.",
+      level: "Advanced",
+      minutesAway: 12,
+      worksOn: "NW 2–4m, 12s+",
+      note: "The wave that put this coast on the map. Four sections, and on the right day it joins them all the way to the boulders. Crowded by eight, which is why the van leaves at six.",
     },
     {
       id: "boilers",
       name: "Boilers",
       hand: "Right",
       level: "Advanced",
-      minutesAway: 14,
+      minutesAway: 18,
       worksOn: "NW 2–4m, high tide",
-      note: "Fast reef wave over urchins, marked by the rusted boiler of a wrecked ship. Boots on. Not a beginner's wave on any day of the year.",
-    },
-    {
-      id: "imi-ouaddar",
-      name: "Imi Ouaddar",
-      hand: "Right",
-      level: "Intermediate",
-      minutesAway: 20,
-      worksOn: "NW 1–3m, mid tide",
-      note: "Point and beach break sharing one bay, twenty minutes north. Half the crowd of Taghazout for two thirds of the wave, and the fish at the village is the reason to stay past the session.",
+      note: "Fast reef wave over urchins, marked by the rusted boiler of a wrecked ship. Boots on. Not a beginner's wave on any day of the year, and we will say so.",
     },
     {
       id: "tamri",
       name: "Tamri",
       hand: "Right",
       level: "Advanced",
-      minutesAway: 35,
+      minutesAway: 40,
       worksOn: "NW 2.5–5m, low to mid",
       note: "The river mouth that holds size when everything south of it has closed out. Cold, exposed, and the first place we look when the chart turns properly dark.",
     },
@@ -291,9 +351,9 @@ export const PROPERTY: PropertyConfig = {
       name: "Imsouane",
       hand: "Right",
       level: "Beginner",
-      minutesAway: 70,
+      minutesAway: 65,
       worksOn: "NW 1–3m, all tides",
-      note: "The Bay — arguably the longest ride in Morocco. An hour and a bit north, so we go when the forecast earns it and we make a day of it.",
+      note: "The Bay — arguably the longest ride in Morocco. An hour north, so we go when the forecast earns it and we make a whole day of it.",
     },
   ],
 
@@ -301,59 +361,69 @@ export const PROPERTY: PropertyConfig = {
     eyebrow: "A Day",
     title: "The tide writes the timetable.",
     intro:
-      "An ordinary Tuesday in October, which is to say the best month here. Nothing on this list is compulsory, including the six-twelve.",
+      "An ordinary Tuesday in October, which is to say the best month here. Nothing on this list is compulsory, including the six-thirty.",
     footnote: "Times shown for October · sunrise shifts ~90 min across the season",
   },
 
+  /**
+   * TO CONFIRM — the intake captured no schedule. This is written to its
+   * instruction to run yoga alongside the surf, and every time in it is a
+   * proposal. Replace wholesale with Youssef's actual day before sending.
+   */
   day: [
     {
-      time: "06:12",
-      title: "First light",
-      body: "Coffee on the terrace in the dark, the kind you can stand a spoon in. Someone reads the buoy out loud. The van leaves at twenty past whether or not you are in it.",
+      time: "06:30",
+      title: "Coffee, and the call",
+      body: "Someone reads the buoy out loud on the roof while it is still dark. Banana if it is small, north if it is not. The van goes at seven whether or not you are in it.",
     },
     {
-      time: "06:40",
+      time: "07:00",
       title: "Dawn patrol",
-      body: "Five minutes to the point, or half an hour north if the chart says so. Two hours before the crowd, three before the wind. This is the session the whole house is organised around.",
+      body: "Three minutes to the point, or twenty up the coast if the chart says so. Two hours before the crowd and three before the wind — this is the session the whole house is arranged around.",
     },
     {
       time: "09:30",
       title: "The long table",
-      body: "Msemen, eggs from Tamraght, argan oil pressed by the co-operative on the Tamri road, amlou, and a flat bread that never quite makes it to the middle of the table.",
+      body: "Msemen, eggs, olives, amlou and argan oil from the co-operative up the Tamri road, and a flat bread that never quite makes it to the middle of the table.",
     },
     {
-      time: "11:00",
+      time: "11:30",
+      title: "Mat on the roof",
+      body: "Ninety minutes while the wind is wrong for the water anyway. Shoulders first, because everybody's shoulders are wrecked. On the sand instead when the morning is still.",
+    },
+    {
+      time: "13:30",
       title: "The flat hours",
-      body: "The wind comes onshore and the day opens up. Hammam, the market at Aourir on Tuesdays, or nothing at all on the roof, which is the correct answer.",
+      body: "The souk at Aourir on Tuesdays, the hammam, the valley if enough people want it — or nothing at all on the roof, which is the correct answer.",
     },
     {
-      time: "16:30",
+      time: "17:00",
       title: "Evening glass",
-      body: "The wind drops and the water goes to oil for ninety minutes. Shorter session, softer light, fewer people. Boards are back on the rack by sunset.",
+      body: "The wind drops and the water goes to oil for ninety minutes. Shorter session, softer light, fewer people. Boards back on the rack by sunset.",
     },
     {
-      time: "19:45",
+      time: "20:00",
       title: "Dinner, one sitting",
-      body: "One menu, one time, one table. Tagine of the day from the market, and whatever the boats landed at the harbour that afternoon.",
+      body: "One pot, one time, one table. Tagine of the day from the market, and afterwards the fire on the beach for whoever is still standing.",
     },
   ],
 
   table: {
     eyebrow: "The Table",
-    statement: "One menu. One sitting. Whatever the boats brought in.",
+    statement: "One pot. One sitting. Then the fire.",
     body: [
-      "We do not run a restaurant. We run a table, and you are at it. Dinner is a single seating at a quarter to eight, cooked by Fatima, who has been feeding this house since before it took guests.",
-      "The fish comes from the harbour at Taghazout, three kilometres south, and is chosen the same afternoon. The vegetables come from the Tuesday souk at Aourir. The oil is argan, pressed by the women's co-operative on the Tamri road, and it is on the table at every meal including breakfast.",
+      "We do not run a restaurant. We run a table, and you are at it. Dinner is a single seating, cooked in the house, and it is the reason people who booked five nights are still here on the twelfth.",
+      "The vegetables come from the Tuesday souk at Aourir and the fish from the harbour down the coast, chosen the same afternoon. Afterwards somebody carries wood down to the sand, and the evening ends where the day started — looking at the water, in the dark, arguing about the forecast.",
     ],
     photo: {
       id: "table",
       direction:
-        "Overhead, dusk, warm lamplight only. A long table mid-meal — hands reaching, bread torn, tagine open and steaming. Deliberately imperfect: spills, crumbs, mismatched glasses. Never styled flat-lay.",
+        "Night, firelight only. A ring of guests sitting around a fire bowl on the sand, faces half-lit, two more close in the foreground. No flash, no styling — the light source is in the frame and everything else falls off to black.",
       tone: "dusk",
       ratio: "16/9",
     },
     facts: [
-      { label: "Dinner", value: "19:45" },
+      { label: "Dinner", value: "20:00" },
       { label: "Sittings", value: "One" },
     ],
   },
@@ -361,19 +431,20 @@ export const PROPERTY: PropertyConfig = {
   enquire: {
     eyebrow: "Stay",
     title: "Write to us. We answer the same day.",
-    body: "Tell us when you are thinking of coming and how much of the water you want. We will tell you honestly what the swell tends to do that week, and whether the house is the right one for you.",
+    body: "Tell us when you are thinking of coming and how much of the water you want. We will tell you honestly what the swell tends to do that week, which of the packages actually fits, and whether this is the right house for you.",
+    reviewsLabel: "Scored by the people who came",
     notes: [
       {
-        label: "Minimum stay",
-        body: "Three nights, or five over Christmas and New Year.",
-      },
-      {
         label: "Getting here",
-        body: "Agadir Al Massira (AGA) is fifty minutes by road. We arrange the transfer.",
+        body: "Agadir Al Massira (AGA) is forty minutes by road. We arrange the transfer.",
       },
       {
         label: "Best swell",
         body: "October to March. September and April are quieter and still good.",
+      },
+      {
+        label: "Also listed on",
+        body: "Booking.com, Hostelworld and BookRetreats — though it is cheaper and easier to write to us directly.",
       },
     ],
   },

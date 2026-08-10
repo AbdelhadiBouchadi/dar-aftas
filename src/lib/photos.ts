@@ -1,11 +1,11 @@
 import type { StaticImageData } from "next/image";
 
-import place from "@/assets/photos/place.jpg";
-import roomBed from "@/assets/photos/room-bed.jpg";
-import roomCourtyard from "@/assets/photos/room-courtyard.jpg";
-import roomNiche from "@/assets/photos/room-niche.jpg";
-import roomTerrace from "@/assets/photos/room-terrace.jpg";
-import table from "@/assets/photos/table.jpg";
+import place from "@/assets/photos/place.webp";
+import stayHouse from "@/assets/photos/stay-house.webp";
+import staySurf from "@/assets/photos/stay-surf.webp";
+import stayTrip from "@/assets/photos/stay-trip.webp";
+import stayYoga from "@/assets/photos/stay-yoga.webp";
+import table from "@/assets/photos/table.webp";
 
 /**
  * Photographs keyed by `PhotoBrief.id`.
@@ -15,9 +15,9 @@ import table from "@/assets/photos/table.jpg";
  * `blurDataURL`. That gives a true blur-up on load and makes layout shift
  * impossible — neither is available when you pass a `/public` string.
  *
- * Slots are named for **what the frame contains** — `room-terrace`, not
- * `room-tamri`. Room names change with every client this template is pitched
- * to; the photograph of a terrace is still a photograph of a terrace. Keying on
+ * Slots are named for **what the frame contains** — `stay-surf`, not
+ * `stay-5-day`. Package names and prices change every season; the photograph of
+ * a board being carried across a yard is still that photograph. Keying on
  * content is what lets `property.config.ts` be rewritten end to end without
  * orphaning a single image.
  *
@@ -31,10 +31,10 @@ import table from "@/assets/photos/table.jpg";
 export const PHOTOS: Readonly<Record<string, StaticImageData>> = {
   place,
   table,
-  "room-bed": roomBed,
-  "room-niche": roomNiche,
-  "room-courtyard": roomCourtyard,
-  "room-terrace": roomTerrace,
+  "stay-surf": staySurf,
+  "stay-yoga": stayYoga,
+  "stay-house": stayHouse,
+  "stay-trip": stayTrip,
 };
 
 /**
@@ -43,15 +43,15 @@ export const PHOTOS: Readonly<Record<string, StaticImageData>> = {
  */
 export const PHOTO_ALT: Readonly<Record<string, string>> = {
   place:
-    "Ochre and whitewashed houses stacked on a hillside above a beach, fishing boats drawn up on the sand below.",
+    "Surfboards standing upright in the sand at the end of a beginners' lesson, with hills and a white hillside village behind the beach.",
   table:
-    "A long table seen from above, mid-meal: shared dishes, candles and glasses spread across the whole surface.",
-  "room-bed":
-    "Hard parallel stripes of morning sunlight falling across rumpled bed linen.",
-  "room-niche":
-    "A deep rectangular niche cut into a thick sand-coloured plaster wall, lit from one side.",
-  "room-courtyard":
-    "A tree throwing dappled shade across a whitewashed courtyard wall beside a blue-painted door.",
-  "room-terrace":
-    "Low wicker chairs on a terrace facing a hazy sea, the horizon a flat band behind them.",
+    "A ring of people sitting around a fire bowl on the sand at night, their faces lit only by the flames.",
+  "stay-surf":
+    "A surfer in a wetsuit carrying a floral-patterned longboard past pickup trucks stacked with boards, in front of a wall painted with a whale.",
+  "stay-yoga":
+    "A line of people in wetsuits balancing in tree pose on wet sand, with the shorebreak behind them.",
+  "stay-house":
+    "A made bed with a patterned Berber blanket across it, under straw hats and painted plates hung on a white wall.",
+  "stay-trip":
+    "A low table laid with shared dishes on a red rug in the dunes, leather poufs around it and a camel train crossing the ridge at sunset.",
 };

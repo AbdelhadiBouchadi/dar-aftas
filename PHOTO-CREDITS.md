@@ -1,80 +1,71 @@
 # Photography credits
 
-Two sources:
+Every frame on the site is **client photography of Maghrib Nomads**, collected
+by hand into `intake/maghrib-nomads/photos/` (45 frames, from their Instagram
+grid and their Booking.com listing) and processed to the ratios the layout
+reserves. No stock, no AI generation — both were used in the earlier Dar Aftas
+demo and both are gone.
 
-- **Four photographs from Pexels** — hero, hero-portrait, place, table — used
-  under the [Pexels License](https://www.pexels.com/license/): free for
-  commercial use, no attribution required, modification permitted. Credited
-  below anyway, as good practice.
-- **Four AI-generated room frames** — see [Generated rooms](#generated-rooms).
+Sources are stored at `src/assets/photos/*.webp` and `public/hero/*`
+(pre-encoded AVIF/WebP/JPEG for the art-directed hero). Machine-readable:
+`src/assets/photos/CREDITS.json`.
 
-Sources are stored at `src/assets/photos/*.jpg` (cropped to the layout's
-reserved ratios) and `public/hero/*` (pre-encoded AVIF/WebP/JPEG for the
-art-directed hero). Machine-readable credits: `src/assets/photos/CREDITS.json`.
-
-| Slot | Photographer | Source |
-|---|---|---|
-| `hero` | Jimmy Boos | [Surfers on the beach](https://www.pexels.com/photo/people-wearing-black-wetsuits-while-surfing-on-the-beach-12343310/) |
-| `hero-portrait` | Red Zeppelin | [Aerial surfer on the coastline](https://www.pexels.com/photo/aerial-view-of-surfer-on-the-jurassic-coastline-34596817/) |
-| `place` | Zak Mogel | [Beachfront with boats in **Taghazout**](https://www.pexels.com/photo/bustling-beachfront-with-boats-in-taghazout-37138791/) |
-| `table` | Askar Abayev | [Food on a decorated table](https://www.pexels.com/photo/food-on-decorated-table-during-party-5638752/) |
+| Slot | Ratio | Frame | Source |
+|---|---|---|---|
+| `hero` | 21/9 | The line-up: five beginners sitting on their boards between sets | `652003027.jpg` |
+| `hero-portrait` | 3/4 | Building the beach fire at sundown, Atlantic behind | `651747141.jpg` |
+| `place` | 3/2 | Boards upright on Tamraght beach, village stacked on the hill behind | `651747187.jpg` |
+| `table` | 16/9 | The ring of faces around the fire bowl, firelight only | `651747176.jpg` |
+| `stay-surf` | 4/5 | Floral longboard carried past the loaded pickups, whale mural behind | `651747007.jpg` |
+| `stay-yoga` | 4/5 | Tree pose on wet sand in half-peeled wetsuits | `652002985.jpg` |
+| `stay-house` | 4/5 | Berber blanket on a made bed, straw hats on the wall | `651746992.jpg` |
+| `stay-trip` | 4/5 | Dinner laid on a rug in the dunes, camel train on the ridge | `651747316.jpg` |
 
 ## How these were chosen
 
-Candidates were pulled via the Pexels API across several query angles per slot,
-rendered as contact sheets, and judged against the brief in
-[ART-DIRECTION.md](./ART-DIRECTION.md). The hero finalists were additionally
-composited into a mock of the real hero — actual scrim, actual wordmark — because
-a square thumbnail cannot tell you whether the bottom-left survives the type.
+All 45 frames were rendered as labelled contact sheets and scanned, then the
+finalists were opened at full resolution — a 300px thumbnail cannot tell you
+whether a top half is clean enough to hold a wordmark, or whether a burnt-in
+caption sits inside the crop.
 
-`place` is the one literal match: it was shot in Taghazout.
+The library is roughly two thirds Booking.com room interiors (white walls,
+wicker sun discs, platform beds) and one third Instagram experience shots. The
+interiors are competent and nearly interchangeable; the experience shots carry
+the whole brand, so the selection leans hard on them and spends exactly one
+slot on a room.
 
-## Generated rooms
+**The hero was the constrained choice.** Only nine frames in the set are
+landscape at all, and only one is a wide ocean frame with a top half empty
+enough to set type over: `652003027`. Its 21/9 centre crop drops the horizon
+entirely, which turns out to be the making of it — the result is open water as
+ground, surfers low in the frame, and a clean band of sea exactly where the
+wordmark lands. The bottom-left type zone falls on flat water.
 
-The four room frames are **AI-generated**, not photographed.
+`table` is the one crop that is not centred. Centring a 16/9 window on a square
+frame decapitated the ring of people behind the fire, so it is offset 48px up.
 
-| Slot | Prompt source | Seed |
-|---|---|---|
-| `room-bed` | [ART-DIRECTION.md](./ART-DIRECTION.md) | 47 |
-| `room-niche` | ART-DIRECTION.md | 47 |
-| `room-courtyard` | ART-DIRECTION.md | 11 |
-| `room-terrace` | ART-DIRECTION.md | 11 |
-
-**Method.** Generated with [Pollinations](https://pollinations.ai) running
-Flux — free, no API key, no billing. Three seeds per room, selected on a
-contact sheet for matching light direction so the four read as one shoot. The
-prompts are the briefs from `ART-DIRECTION.md` plus a shared grade paragraph.
-
-**Why not Gemini.** Every Gemini image model returned HTTP 429 on the free
-tier; image generation there requires billing. AI Horde was tried as a
-higher-resolution alternative — it offers RealESRGAN 4× post-processing — but
-anonymous requests are capped at 790×790 and queued at roughly 17 minutes per
-image, which is over an hour for four with no quality guarantee.
-
-**The real limitation: resolution.** Pollinations hard-caps output at ~686px
-on the long edge regardless of the size requested. Each winner is upscaled to
-its slot size (≈2.1×) with a Lanczos-3 kernel plus unsharp masking. Smooth
-subjects — plaster, linen, shade — interpolate well and the site's film grain
-restores high-frequency texture, so at display size the result holds. **Under
-1:1 scrutiny it is visibly soft**, particularly on fine detail like shutter
-louvres and foliage. No processing invents detail the source never had.
-
-Saturation is also knocked back to 0.84 during ingestion: Flux renders
-Mediterranean blues far harder than the Pexels frames beside them, and the CSS
-grade alone could not close the gap.
-
-**Licensing.** Flux outputs are generally usable commercially, and this is a
-prototype. For a real client deliverable, replace these with commissioned
-photography of the actual property — an AI-generated interior presented as a
-bookable room is misleading regardless of licence.
+`stay-surf` had an Instagram caption burnt into the bottom of the frame; the
+4/5 centre crop removes it. Worth checking for on any frame added later — several
+others in the intake set have them.
 
 ## Honest limitations
 
-**The rooms are generated, and capped at 686px.** See above. The upgrade path,
-cheapest first: enable billing on the Gemini key (~$0.50 for all four, prompts
-already written), or Midjourney with `--ar 4:5` / `--ar 3:2`, or a real shoot —
-the only option that produces the actual property.
+**Resolution is the real ceiling, and it is low.** These arrived through
+Instagram and Booking.com, so the largest frame in the entire set is 1024px on
+the long edge and most are 576px. After cropping, the hero is **1024×439** and
+it is the full-bleed LCP element on every visit. `HeroPicture` therefore
+declares candidates at 640w/1024w and stops — an upscale to the old 2800w
+descriptor would invent no detail and lie to the browser's selection algorithm.
+On a large desktop display the hero **is** visibly soft. The film grain and the
+two-part scrim carry it at normal viewing distance, and it is fine for a pitch,
+but a real shoot is the only fix and should be the first line of any proposal.
 
-**The table shot is not Moroccan food.** It is a communal overhead that reads
-correctly as "one table, one sitting", but the dishes are Western. Fine for a
-prototype; replace before any real client sees it as their own.
+**`stay-trip` and the dunes are not Tamraght.** That frame is from one of their
+Saharan day trips, roughly a day's drive inland, and it is used in the section
+that describes exactly that. It should not be allowed to migrate into a slot
+that implies it is the view from the house.
+
+**The rooms are undersold.** The intake never captured room names, counts or
+rates from the Booking.com "Info & prices" tab, so the section sells packages
+instead and spends one frame on the house. If room-level detail arrives later
+there is plenty of interior photography here to support it.

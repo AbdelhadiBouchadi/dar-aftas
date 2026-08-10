@@ -1,21 +1,25 @@
 # Photography Brief
 
-> **Status:** all eight slots are now filled with real photography from Pexels.
-> See [PHOTO-CREDITS.md](./PHOTO-CREDITS.md) for what was chosen, why, and where
-> it falls short of the briefs below. The four room slots are the weak point —
-> they hold material and light studies rather than actual interiors, because no
-> stock library has a lime-plaster Moroccan guest house.
+> **Status:** all eight slots hold **client photography of Maghrib Nomads** —
+> see [PHOTO-CREDITS.md](./PHOTO-CREDITS.md) for what was chosen and why. The
+> stock and AI-generated frames from the Dar Aftas demo are gone.
 >
-> This document remains the specification: it is what to hand a photographer,
-> and what the AI prompts at the bottom target.
+> The briefs below no longer describe what is on the page; the live briefs moved
+> into `src/lib/property.config.ts` and are written against the frames the
+> client actually had. **The weak point is now resolution, not subject** — the
+> largest source in the set is 1024px on the long edge, so the hero is soft on a
+> large display.
+>
+> This document remains the specification for a **real shoot**: it is what to
+> hand a photographer, and the fastest single upgrade available to this site.
 
 Each unfilled slot renders its own brief on the page, so nothing is a grey box
 and nothing is guessed at later.
 
-Slots are named for **what the frame contains** (`room-terrace`), never for the
-room that uses it — room names change with every client this template is pitched
-to, so keying on content means rewriting `property.config.ts` never orphans a
-photograph.
+Slots are named for **what the frame contains** (`stay-surf`), never for the
+package or room that uses it — those change with every client this template is
+pitched to, so keying on content means rewriting `property.config.ts` never
+orphans a photograph.
 
 **Swapping in real photography is a one-line change per slot.** The brief lives
 in `src/lib/property.config.ts`; `PhotoPlate` renders the placeholder when no

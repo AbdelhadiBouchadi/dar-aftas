@@ -10,9 +10,10 @@ import type {
   PhotoBrief,
   PointsCopy,
   PropertyIdentity,
-  Room,
-  RoomsCopy,
+  Review,
   SeoConfig,
+  Stay,
+  StaysCopy,
   SurfBreak,
   TableCopy,
 } from "@/lib/types";
@@ -22,7 +23,7 @@ import type {
  *
  * This file holds no data of its own — it names the pieces of `PROPERTY` that
  * sections consume. The indirection is the point: components import stable
- * names (`SITE`, `ROOMS`, `BREAKS`) and never reach into the config's shape, so
+ * names (`SITE`, `STAYS`, `BREAKS`) and never reach into the config's shape, so
  * re-skinning the site for a new client is one file (`@/lib/property.config`)
  * and zero component edits.
  */
@@ -42,8 +43,11 @@ export const PLACE_PHOTO: PhotoBrief = PROPERTY.placePhoto;
 
 export const MANIFESTO: ManifestoCopy = PROPERTY.manifesto;
 
-export const ROOMS_COPY: RoomsCopy = PROPERTY.roomsCopy;
-export const ROOMS: readonly Room[] = PROPERTY.rooms;
+export const STAYS_COPY: StaysCopy = PROPERTY.staysCopy;
+export const STAYS: readonly Stay[] = PROPERTY.stays;
+
+/** Aggregate platform scores. Never rendered without source and count. */
+export const REVIEWS: readonly Review[] = PROPERTY.reviews;
 
 export const POINTS_COPY: PointsCopy = PROPERTY.pointsCopy;
 export const BREAKS: readonly SurfBreak[] = PROPERTY.breaks;

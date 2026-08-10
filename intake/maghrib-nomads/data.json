@@ -1,0 +1,62 @@
+{
+  "prospect": "Maghrib Nomads Surf House",
+  "outreach_hook": "Their own domain (maghribnomads.com), linked directly in their Instagram bio as 'BOOK YOUR TRIP NOW', redirects through a bot-verification page to an unrelated third-party domain (lisboahotel.com.mx) before landing on their Booking.com listing, which itself currently shows 'not taking reservations on our site right now'. Verify this reproduces before citing it in outreach.",
+
+  "identity": {
+    "name": "Maghrib Nomads",
+    "wordmark_candidates": ["MAGHRIB NOMADS", "NOMADS"],
+    "tagline_source_ig_bio": "Surf Camp Morocco | Maghrib Nomads — Stay - Surf - Authentic local experiences",
+    "host_name": "Youssef (CEO/host, per BookRetreats bio)",
+    "location": "Tamraght, Agadir Ida-Outanane, Morocco 80023",
+    "email_found": "contact@maghribnomads.com",
+    "phone_found_search": "+212 602-474-458",
+    "phone_found_maps": null,
+    "instagram": "instagram.com/maghribnomads (489 followers, 37 posts)",
+    "facebook": "Maghrib Nomads Surf House (Facebook Page, linked from IG bio)",
+    "other_listings": ["Booking.com", "Hostelworld", "BookRetreats.com"]
+  },
+
+  "coast": {
+    "latitude": 30.5101753,
+    "longitude": -9.6775172,
+    "note": "Tamraght coast, same bearing as your Dar Aftas demo (coastFacingDegrees: 270) - reuse as-is"
+  },
+
+  "reviews_signal": {
+    "booking_com": { "score": "7.3 Good", "count": 74 },
+    "google_maps": { "score": 4.5, "count": 58 },
+    "bookretreats": { "score": 5.0, "count": 7 },
+    "category_scores_booking": {
+      "staff": 8.6, "facilities": 7.5, "cleanliness": null,
+      "comfort": 7.2, "value_for_money": 8.1, "location": 8.4, "wifi": 10
+    }
+  },
+
+  "services_and_packages": {
+    "instagram_highlight_categories": ["Food", "Daytrip", "Waves", "Yoga", "Life", "House"],
+    "packages_found": [
+      { "name": "8 Day Unique & Authentic Yoga - Surf Camp", "price_from_usd": 409 },
+      { "name": "5 Day Pack Surf & Yoga Lessons - Beginners", "price_from_usd": 469 }
+    ],
+    "amenities_from_booking": ["Free WiFi", "Rooftop terrace", "Shared kitchen area implied"],
+    "inferred_offering": "Combined surf + yoga guest house, communal dining (long-table meals visible repeatedly in IG grid), day trips, guided surf sessions"
+  },
+
+  "photo_sourcing_plan": {
+    "method": "MANUAL ONLY - no scraping. Save 8-12 images by hand (screenshot or right-click-save) while browsing, same as you'd do researching any prospect.",
+    "sources": [
+      "Instagram grid: sunset group shot, communal dinner/long-table shots (appear repeatedly - likely their strongest asset), yoga-on-beach, surf lesson on sand",
+      "Booking.com listing has '+38 photos' link - room interiors, rooftop, common areas",
+      "Their own uploaded content only - do not use other guests' tagged photos or stock images"
+    ],
+    "fallback_note": "Your template already renders art-direction briefs for unbound photo slots - use this to build and send the first preview link BEFORE spending time collecting every image. Swap in real photos only after they reply interested."
+  },
+
+  "config_mapping_suggestions": {
+    "manifesto": "Long-table communal dining is clearly central to their identity (appears in most IG posts) - lead with this the way your Dar Aftas demo leads with 'the tide writes the timetable'",
+    "table": "Directly reuse - they already have this exact concept (shared meals, home-cooked)",
+    "rooms": "Pull real room count/names from Booking.com 'Info & prices' tab (not captured in this video pass - check that tab)",
+    "breaks": "Reuse your existing Tamraght-area breaks (Banana Point, Devil's Rock, Panoramas) - same coastline as Dar Aftas demo",
+    "day": "Incorporate yoga session alongside surf session, since it's a named highlight category unlike your surf-only demo"
+  }
+}

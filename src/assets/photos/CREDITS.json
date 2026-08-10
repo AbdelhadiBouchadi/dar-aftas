@@ -1,54 +1,63 @@
 [
   {
+    "note": "All frames are client-supplied photography of Maghrib Nomads, Tamraght, collected by hand into intake/maghrib-nomads/photos/ and processed to the layout's reserved ratios. No stock, no AI generation. `source` is the original filename in that directory.",
+    "client": "Maghrib Nomads",
+    "intake": "intake/maghrib-nomads/data.json"
+  },
+  {
     "slot": "hero",
-    "photographer": "Jimmy  Boos",
-    "pexelsId": 12343310,
-    "pageUrl": "https://www.pexels.com/photo/people-wearing-black-wetsuits-while-surfing-on-the-beach-12343310/"
+    "source": "652003027.jpg",
+    "ratio": "21/9",
+    "crop": "centre",
+    "native": "1024x439"
   },
   {
     "slot": "hero-portrait",
-    "photographer": "Red Zeppelin",
-    "pexelsId": 34596817,
-    "pageUrl": "https://www.pexels.com/photo/aerial-view-of-surfer-on-the-jurassic-coastline-34596817/"
+    "source": "651747141.jpg",
+    "ratio": "3/4",
+    "crop": "native",
+    "native": "576x768"
   },
   {
     "slot": "place",
-    "photographer": "Zak Mogel",
-    "pexelsId": 37138791,
-    "pageUrl": "https://www.pexels.com/photo/bustling-beachfront-with-boats-in-taghazout-37138791/"
+    "source": "651747187.jpg",
+    "ratio": "3/2",
+    "crop": "centre",
+    "native": "1024x683"
   },
   {
     "slot": "table",
-    "photographer": "Askar Abayev",
-    "pexelsId": 5638752,
-    "pageUrl": "https://www.pexels.com/photo/food-on-decorated-table-during-party-5638752/"
+    "source": "651747176.jpg",
+    "ratio": "16/9",
+    "crop": "offset up 48px, to keep the ring of faces above the fire",
+    "native": "768x432"
   },
   {
-    "slot": "room-bed",
-    "source": "ai-generated",
-    "generator": "pollinations.ai (Flux)",
-    "seed": 47,
-    "promptSource": "ART-DIRECTION.md"
+    "slot": "stay-surf",
+    "source": "651747007.jpg",
+    "ratio": "4/5",
+    "crop": "centre — also drops the burnt-in Instagram caption at the foot of the frame",
+    "native": "432x540"
   },
   {
-    "slot": "room-niche",
-    "source": "ai-generated",
-    "generator": "pollinations.ai (Flux)",
-    "seed": 47,
-    "promptSource": "ART-DIRECTION.md"
+    "slot": "stay-yoga",
+    "source": "652002985.jpg",
+    "ratio": "4/5",
+    "crop": "centre",
+    "native": "576x720"
   },
   {
-    "slot": "room-courtyard",
-    "source": "ai-generated",
-    "generator": "pollinations.ai (Flux)",
-    "seed": 11,
-    "promptSource": "ART-DIRECTION.md"
+    "slot": "stay-house",
+    "source": "651746992.jpg",
+    "ratio": "4/5",
+    "crop": "centre",
+    "native": "576x720"
   },
   {
-    "slot": "room-terrace",
-    "source": "ai-generated",
-    "generator": "pollinations.ai (Flux)",
-    "seed": 11,
-    "promptSource": "ART-DIRECTION.md"
+    "slot": "stay-trip",
+    "source": "651747316.jpg",
+    "ratio": "4/5",
+    "crop": "centre",
+    "native": "614x768"
   }
 ]

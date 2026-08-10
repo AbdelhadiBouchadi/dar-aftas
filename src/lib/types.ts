@@ -28,8 +28,8 @@ export interface PhotoBrief {
   /**
    * Stable slot id, also used as the GSAP parallax target key and the lookup
    * into `@/lib/photos`. Slots are named for what the frame *contains*
-   * (`room-terrace`), never for the room that happens to use it — so renaming a
-   * room in the config never orphans a photograph.
+   * (`stay-surf`), never for the package that happens to use it — so renaming
+   * or repricing a stay in the config never orphans a photograph.
    */
   readonly id: string;
   /** What the frame must contain. Written for a photographer, not a developer. */
@@ -39,18 +39,52 @@ export interface PhotoBrief {
   readonly ratio: AspectRatio;
 }
 
-/** A guest room in the house. */
-export interface Room {
+/**
+ * Something the house sells: a dated package, or an open-ended stay.
+ *
+ * Was `Room`. A surf house on this coast is booked by the trip, not by the
+ * night — the packages are the listed product on BookRetreats and the rooms
+ * behind them are undifferentiated — so the unit of the section is the stay.
+ */
+export interface Stay {
   readonly id: string;
   readonly name: string;
-  /** Berber/Darija meaning or provenance of the room name. */
-  readonly meaning: string;
-  readonly sleeps: number;
-  readonly aspect: string;
-  /** Two or three concrete material details — the things guests actually remember. */
-  readonly details: readonly string[];
-  readonly nightlyFrom: number;
+  /** One line on what the stay actually is. Sits under the name in italic. */
+  readonly summary: string;
+  /** Nights, where the package is a fixed length. Omitted for open stays. */
+  readonly nights?: number;
+  /** Who it suits — "Beginners", "All levels". Printed as the left-hand label. */
+  readonly level: string;
+  /** Two to four concrete inclusions — the things a guest is actually buying. */
+  readonly includes: readonly string[];
+  /**
+   * Lead-in price in **US dollars**, as listed by the operator. Absent where no
+   * public price exists, in which case `priceNote` carries the ask instead —
+   * never invent a figure to fill the slot.
+   */
+  readonly priceFromUsd?: number;
+  /** Qualifier beside the price, or the whole story when there is no price. */
+  readonly priceNote: string;
   readonly photo: PhotoBrief;
+}
+
+/**
+ * An aggregate rating on a platform the property is listed on.
+ *
+ * Score, scale, count and source are all required together: a bare "4.5" is
+ * marketing, and "4.5/5 from 58 Google reviews" is a fact a reader can go and
+ * check. This is deliberately not a testimonial type — pull quotes attributed
+ * to named guests are only ever transcribed from a real review, never written.
+ */
+export interface Review {
+  /** Platform name as it should be printed, e.g. "Booking.com". */
+  readonly source: string;
+  /** The score as displayed by that platform. */
+  readonly score: string;
+  /** Denominator, because platforms disagree — Booking is /10, Google is /5. */
+  readonly scale: string;
+  /** Number of ratings behind the score. */
+  readonly count: number;
 }
 
 /** Difficulty banding for a surf break. */
@@ -111,7 +145,7 @@ export interface Note {
 
 /** Who the property is. Drives metadata, structured data and the social card. */
 export interface PropertyIdentity {
-  /** Full trading name, e.g. "Dar Aftas". */
+  /** Full trading name, e.g. "Maghrib Nomads". */
   readonly name: string;
   /** Short mark set in Bodoni at hero scale. Keep it to one word. */
   readonly wordmark: string;
@@ -182,7 +216,7 @@ export interface ManifestoCopy {
   readonly pullQuote: string;
 }
 
-export interface RoomsCopy extends SectionCopy {
+export interface StaysCopy extends SectionCopy {
   /** What the rate includes, and anything held back from the list above. */
   readonly footnote: string;
 }
@@ -210,6 +244,8 @@ export interface TableCopy {
 export interface EnquireCopy extends SectionCopy {
   readonly body: string;
   readonly notes: readonly Note[];
+  /** Label above the ratings row, e.g. "What guests score us". */
+  readonly reviewsLabel: string;
 }
 
 /**
@@ -229,8 +265,10 @@ export interface PropertyConfig {
   readonly heroPhoto: PhotoBrief;
   readonly placePhoto: PhotoBrief;
   readonly manifesto: ManifestoCopy;
-  readonly roomsCopy: RoomsCopy;
-  readonly rooms: readonly Room[];
+  readonly staysCopy: StaysCopy;
+  readonly stays: readonly Stay[];
+  /** Aggregate scores, printed with their source and count or not at all. */
+  readonly reviews: readonly Review[];
   readonly pointsCopy: PointsCopy;
   readonly breaks: readonly SurfBreak[];
   readonly dayCopy: DayCopy;
