@@ -1,21 +1,34 @@
 import { HorizontalTrack } from "@/components/animations/HorizontalTrack";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { BREAKS, POINTS_COPY } from "@/lib/content";
-import type { BreakLevel, SurfBreak } from "@/lib/types";
+import { ROUTES, ROUTES_COPY } from "@/lib/content";
+import type { Route, RouteDifficulty } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
-/** Level is encoded by a rule weight as well as colour — never colour alone. */
-const LEVEL_RULE: Record<BreakLevel, string> = {
-  Beginner: "h-px bg-haze-dim",
-  Intermediate: "h-0.5 bg-ochre-light",
-  Advanced: "h-1 bg-ochre",
+/**
+ * Difficulty is encoded by a rule weight as well as colour — never colour alone.
+ *
+ * Typed as an exhaustive `Record`, so adding a difficulty to the union without
+ * giving it a weight here is a build error rather than an undefined class
+ * string that renders as no rule at all.
+ */
+const DIFFICULTY_RULE: Record<RouteDifficulty, string> = {
+  Easy: "h-px bg-haze-dim",
+  Moderate: "h-0.5 bg-ochre-light",
+  Technical: "h-1 bg-ochre",
 };
 
-interface BreakCardProps {
-  readonly surfBreak: SurfBreak;
+/** Minutes as a rider reads them: "90 min" under two hours, "3 h" over. */
+function formatDuration(minutes: number): string {
+  if (minutes < 120) return `${String(minutes)} min`;
+  const hours = minutes / 60;
+  return `${Number.isInteger(hours) ? String(hours) : hours.toFixed(1)} h`;
 }
 
-function BreakCard({ surfBreak }: BreakCardProps): React.JSX.Element {
+interface RouteCardProps {
+  readonly route: Route;
+}
+
+function RouteCard({ route }: RouteCardProps): React.JSX.Element {
   return (
     <article
       className={cn(
@@ -30,36 +43,36 @@ function BreakCard({ surfBreak }: BreakCardProps): React.JSX.Element {
     >
       <div>
         <div className="flex items-baseline justify-between gap-4">
-          <span className="label-mono text-ochre-light">{surfBreak.hand}</span>
+          <span className="label-mono text-ochre-light">{route.terrain}</span>
           <span className="label-mono text-haze-dim" data-numeric>
-            {surfBreak.minutesAway} min
+            {formatDuration(route.durationMinutes)}
           </span>
         </div>
 
         <h3 className="mt-8 text-balance font-display text-[clamp(2rem,4.5vw,3.5rem)] leading-[0.95] text-sand">
-          {surfBreak.name}
+          {route.name}
         </h3>
 
         {/* Weight carries the difficulty; the label states it in words. */}
         <div
           aria-hidden="true"
           className={cn(
-          "mt-6 w-full origin-left transition-transform duration-700 ease-out",
-          "motion-safe:scale-x-[0.42] motion-safe:group-hover/card:scale-x-100",
-          LEVEL_RULE[surfBreak.level],
-        )}
+            "mt-6 w-full origin-left transition-transform duration-700 ease-out",
+            "motion-safe:scale-x-[0.42] motion-safe:group-hover/card:scale-x-100",
+            DIFFICULTY_RULE[route.difficulty],
+          )}
         />
-        <p className="label-mono mt-3 text-haze-dim">{surfBreak.level}</p>
+        <p className="label-mono mt-3 text-haze-dim">{route.difficulty}</p>
 
         <p className="mt-8 text-pretty text-sm leading-relaxed text-sand/80">
-          {surfBreak.note}
+          {route.note}
         </p>
       </div>
 
       <dl className="mt-10 border-t border-sand/15 pt-5">
-        <dt className="label-mono text-haze-dim">Works on</dt>
+        <dt className="label-mono text-haze-dim">{ROUTES_COPY.bestAtLabel}</dt>
         <dd className="mt-2 font-mono text-sm text-sand" data-numeric>
-          {surfBreak.worksOn}
+          {route.bestAt}
         </dd>
       </dl>
     </article>
@@ -70,29 +83,29 @@ function BreakCard({ surfBreak }: BreakCardProps): React.JSX.Element {
  * Server Component. The pinned horizontal mechanic is isolated in
  * `HorizontalTrack`, which is the only client code in this section.
  */
-export function Points(): React.JSX.Element {
+export function Routes(): React.JSX.Element {
   return (
-    <section id="points" data-ground="dark" className="grain relative bg-basalt">
+    <section id="routes" data-ground="dark" className="grain relative bg-basalt">
       <div className="gutter pt-section">
         <SectionHeading
-          eyebrow={POINTS_COPY.eyebrow}
-          title={POINTS_COPY.title}
+          eyebrow={ROUTES_COPY.eyebrow}
+          title={ROUTES_COPY.title}
           inverse
           titleClassName="max-w-[24ch]"
         />
         <p className="mt-8 max-w-[58ch] text-pretty text-base leading-relaxed text-sand/70">
-          {POINTS_COPY.intro}
+          {ROUTES_COPY.intro}
         </p>
       </div>
 
       <HorizontalTrack
-        label={POINTS_COPY.trackLabel}
+        label={ROUTES_COPY.trackLabel}
         className="mt-16 pb-section lg:mt-0 lg:flex lg:min-h-dvh lg:items-center lg:pb-0"
       >
         {/* Leading gutter spacer keeps the first card off the viewport edge. */}
         <div aria-hidden="true" className="w-gutter shrink-0" />
-        {BREAKS.map((surfBreak) => (
-          <BreakCard key={surfBreak.id} surfBreak={surfBreak} />
+        {ROUTES.map((route) => (
+          <RouteCard key={route.id} route={route} />
         ))}
         <div aria-hidden="true" className="w-gutter shrink-0" />
       </HorizontalTrack>

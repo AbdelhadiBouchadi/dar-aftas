@@ -1,63 +1,104 @@
 [
   {
-    "note": "All frames are client-supplied photography of Maghrib Nomads, Tamraght, collected by hand into intake/maghrib-nomads/photos/ and processed to the layout's reserved ratios. No stock, no AI generation. `source` is the original filename in that directory.",
-    "client": "Maghrib Nomads",
-    "intake": "intake/maghrib-nomads/data.json"
+    "note": "All frames are client-supplied photography of MayaQuad, Imi Ouaddar, collected by hand into intake/mayaquad/photos/ and processed to the layout's reserved ratios. No stock, no AI generation. `source` is the original filename in that directory.",
+    "client": "MayaQuad",
+    "intake": "intake/mayaquad/data.json",
+    "cropping": "Two-stage. Stage 1 is an explicit `extract` of a hand-measured branding-free `safe` box; stage 2 is a sharp `attention` crop to the target ratio inside it. Attention gravity ALONE is unsafe on this set — every usable frame carries a high-contrast blue MAYAQUAD logo block, and most sit inside a marketing graphic with a URL bar, which is exactly what an entropy heuristic locks onto. `safe` below is the stage-1 region in original-image pixels.",
+    "substitutions": "Two slots have no literal subject in the client set and are filled with the truest available stand-in rather than left blank. fleet-scooter has no scooter, so it carries the destination (the Taghazout road sign) that its copy actually sells. fleet-moto has no clean motorbike frame — imgi_108_caption proves they run an orange enduro, but the MAYAQUAD watermark sits dead centre over it and cannot be cropped out — so it carries the country the tour crosses. A motorbike frame and a true headlights-in-the-dark night frame are the two shots still worth requesting.",
+    "recuration": "Second pass over an enlarged folder (139 files, but only 6 genuinely new photographs; the rest is scraped browser chrome — Material icons, favicons, Google Maps sprites). Only one binding changed: night. Everything else was re-checked against its brief and kept, since a newer file is not by itself a better fit.",
+    "enhancement": "These three are the weakest sources in the set, so each gets a tone pass (sharp `modulate` + `linear`) and an unsharp mask; fleet-moto and night are additionally upscaled with lanczos3. Tone and sharpening only — nothing that changes what the photograph shows. The site then applies its unified film grade over the top via the `.photo-film` utility.",
+    "excluded": "Two frames in the intake are screenshots of the client's Google reviews. They are deliberately unused: that is third-party copyrighted text, and the same reason the page paraphrases review sentiment rather than quoting it."
   },
   {
-    "slot": "hero",
-    "source": "652003027.jpg",
+    "slot": "hero (wide)",
+    "source": "imgi_27_483939424_1004086855151344_2925892213672637098_n.jpg",
     "ratio": "21/9",
-    "crop": "centre",
-    "native": "1024x439"
+    "native": "2048x2048",
+    "safe": "0,380 2048x1668",
+    "output": "2048x878",
+    "renditions": "public/hero/hero-wide-{640,1024,1600,2048}.{avif,webp} + hero-wide-1600.jpg"
   },
   {
-    "slot": "hero-portrait",
-    "source": "651747141.jpg",
+    "slot": "hero (portrait)",
+    "source": "imgi_37_480531142_986779940215369_7472881103340256503_n.jpg",
     "ratio": "3/4",
-    "crop": "native",
-    "native": "576x768"
+    "native": "2048x2048",
+    "safe": "160,160 1290x1640",
+    "output": "1230x1640",
+    "renditions": "public/hero/hero-portrait-{400,576,900,1230}.{avif,webp}"
   },
   {
     "slot": "place",
-    "source": "651747187.jpg",
+    "source": "imgi_29_482345944_1001508828742480_531637677041955655_n.jpg",
     "ratio": "3/2",
-    "crop": "centre",
-    "native": "1024x683"
+    "native": "2048x2048",
+    "safe": "0,400 2048x1560",
+    "output": "2048x1365",
+    "renditions": "src/assets/photos/place.webp (cropped source; next/image derives the ladder)"
   },
   {
-    "slot": "table",
-    "source": "651747176.jpg",
+    "slot": "fleet-quad",
+    "source": "imgi_15_615812250_1239379461622081_5559128651038609471_n.jpg",
+    "ratio": "4/5",
+    "native": "1629x2048",
+    "safe": "310,245 1150x1370",
+    "output": "1096x1370",
+    "renditions": "src/assets/photos/fleet-quad.webp (cropped source)"
+  },
+  {
+    "slot": "fleet-buggy",
+    "source": "imgi_36_480670776_986779990215364_6125402520773281957_n.jpg",
+    "ratio": "4/5",
+    "native": "2048x2048",
+    "safe": "560,350 1230x1520",
+    "output": "1216x1520",
+    "renditions": "src/assets/photos/fleet-buggy.webp (cropped source)"
+  },
+  {
+    "slot": "fleet-scooter",
+    "source": "imgi_31_481662991_997852245774805_5360335997703241191_n.jpg",
+    "ratio": "4/5",
+    "native": "2048x2048",
+    "safe": "345,350 1358x1698",
+    "output": "1358x1698",
+    "note": "Safe box is already exactly 4:5, which disables the attention stage on purpose — left to itself it pulled the frame left and sliced the T off TAGHAZOUT. A hand-placed box beats a saliency heuristic when the subject is a word.",
+    "renditions": "src/assets/photos/fleet-scooter.webp (cropped source)"
+  },
+  {
+    "slot": "fleet-moto",
+    "source": "imgi_30_501421222_1007582351550711_3830485491511308285_n.jpg",
+    "ratio": "4/5",
+    "native": "720x1280",
+    "safe": "0,0 720x1280 (no branding anywhere on this frame — the only one in the set)",
+    "output": "1116x1395 (720x900 crop, lanczos3 x1.55)",
+    "renditions": "src/assets/photos/fleet-moto.webp (cropped source)"
+  },
+  {
+    "slot": "night",
+    "source": "imgi_34_AHRPTWnV6jOjUqKH7YNltOEkBYozDcM11rpiCDCUlM2G8w-...=s1360-w1360-h1020-rw.webp",
     "ratio": "16/9",
-    "crop": "offset up 48px, to keep the ring of faces above the fire",
-    "native": "768x432"
+    "native": "765x1020",
+    "safe": "0,250 765x430",
+    "output": "1836x1032 (765x430 crop, lanczos3 x2.4)",
+    "note": "Hand-placed crop, NOT attention: the subject is five riders spread the full width, and a saliency crop locks onto the setting sun and drops the riders at one end. Replaced a tyre-detail substitution in the re-curation pass — this is a real end-of-day ride. Sundown rather than full dark, which the alt text states.",
+    "renditions": "src/assets/photos/night.webp (cropped source)"
   },
   {
-    "slot": "stay-surf",
-    "source": "651747007.jpg",
-    "ratio": "4/5",
-    "crop": "centre — also drops the burnt-in Instagram caption at the foot of the frame",
-    "native": "432x540"
+    "slot": "favicon",
+    "source": "imgi_109_logoe-09.jpg",
+    "ratio": "1/1",
+    "native": "1600x1600",
+    "safe": "313,195 995x868 (the mark only; the MAYAQUAD wordmark below it is illegible at 32px)",
+    "output": "512x512 transparent PNG, #1D5590",
+    "note": "White keyed to transparency by luminance rather than a hard threshold, so the brush texture on the M keeps its antialiased edges. Replaces the template's placeholder didone-T icon.svg.",
+    "renditions": "src/app/icon.png"
   },
   {
-    "slot": "stay-yoga",
-    "source": "652002985.jpg",
-    "ratio": "4/5",
-    "crop": "centre",
-    "native": "576x720"
-  },
-  {
-    "slot": "stay-house",
-    "source": "651746992.jpg",
-    "ratio": "4/5",
-    "crop": "centre",
-    "native": "576x720"
-  },
-  {
-    "slot": "stay-trip",
-    "source": "651747316.jpg",
-    "ratio": "4/5",
-    "crop": "centre",
-    "native": "614x768"
+    "slot": "og-background",
+    "source": "imgi_27_483939424_1004086855151344_2925892213672637098_n.jpg",
+    "ratio": "1200x630",
+    "note": "Cropped from the finished 21/9 hero frame rather than re-derived from the original, so the social card and the page are demonstrably the same photograph.",
+    "output": "1200x630",
+    "renditions": "src/assets/og-background.jpg"
   }
 ]

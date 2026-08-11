@@ -4,19 +4,19 @@ import { Reveal } from '@/components/animations/Reveal';
 import { RevealText } from '@/components/animations/RevealText';
 import { PhotoPlate } from '@/components/ui/PhotoPlate';
 import { SectionHeading } from '@/components/ui/SectionHeading';
-import { STAYS, STAYS_COPY } from '@/lib/content';
-import type { Stay } from '@/lib/types';
+import { FLEET, FLEET_COPY } from '@/lib/content';
+import type { FleetUnit } from '@/lib/types';
 import { cn } from '@/lib/utils';
 
-interface StayEntryProps {
-  readonly stay: Stay;
+interface FleetEntryProps {
+  readonly unit: FleetUnit;
   /** Alternating sides give the section a rhythm without a grid of cards. */
   readonly flipped: boolean;
 }
 
-function StayEntry({ stay, flipped }: StayEntryProps): React.JSX.Element {
+function FleetEntry({ unit, flipped }: FleetEntryProps): React.JSX.Element {
   return (
-    <article className="group/stay grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
+    <article className="group/unit grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
       <div
         className={cn(
           'lg:col-span-7',
@@ -26,9 +26,9 @@ function StayEntry({ stay, flipped }: StayEntryProps): React.JSX.Element {
         <Parallax amount={30}>
           <ImageReveal>
             <PhotoPlate
-              brief={stay.photo}
+              brief={unit.photo}
               sizes="(min-width: 1024px) 58vw, 100vw"
-              className="transition-transform duration-[900ms] ease-out motion-safe:group-hover/stay:scale-[1.03]"
+              className="transition-transform duration-900 ease-out motion-safe:group-hover/unit:scale-[1.03]"
             />
           </ImageReveal>
         </Parallax>
@@ -41,10 +41,10 @@ function StayEntry({ stay, flipped }: StayEntryProps): React.JSX.Element {
         )}
       >
         <Reveal className="flex items-baseline justify-between gap-6 border-b border-haze/30 pb-4">
-          <span className="label-mono text-ochre-ink">{stay.level}</span>
-          {stay.nights === undefined ? null : (
+          <span className="label-mono text-ochre-ink">{unit.suits}</span>
+          {unit.seats === undefined ? null : (
             <span className="label-mono text-haze-ink" data-numeric>
-              {stay.nights} days
+              {unit.seats} seats
             </span>
           )}
         </Reveal>
@@ -53,15 +53,15 @@ function StayEntry({ stay, flipped }: StayEntryProps): React.JSX.Element {
           as="h3"
           className="mt-8 text-[clamp(2.25rem,5vw,3.75rem)] text-basalt"
         >
-          {stay.name}
+          {unit.name}
         </RevealText>
 
         <RevealText className="mt-4 font-display text-lg italic text-clay">
-          {stay.summary}
+          {unit.summary}
         </RevealText>
 
         <Reveal className="mt-8" staggerChildren>
-          {stay.includes.map((item) => (
+          {unit.includes.map((item) => (
             <p
               key={item}
               className="flex gap-4 border-t border-haze/20 py-3.5 text-sm leading-relaxed text-haze-ink first:border-t-0 first:pt-0"
@@ -76,19 +76,22 @@ function StayEntry({ stay, flipped }: StayEntryProps): React.JSX.Element {
         </Reveal>
 
         {/*
-          A stay with no published price prints its note alone rather than a
-          figure we would have had to invent. See `Stay.priceFromUsd`.
+          Dirham, printed after the figure the way it is written locally — and
+          never with a `$`, which is what this slot used to hardcode. A machine
+          with no published rate prints its note alone rather than a figure we
+          would have had to invent. See `FleetUnit.priceFromMad`.
         */}
         <Reveal className="mt-8 flex flex-wrap items-baseline gap-3">
-          {stay.priceFromUsd === undefined ? null : (
+          {unit.priceFromMad === undefined ? null : (
             <>
               <span className="label-mono text-haze-ink">From</span>
               <span className="font-mono text-2xl text-basalt" data-numeric>
-                ${stay.priceFromUsd}
+                {unit.priceFromMad}
+                <span className="ml-1.5 text-base text-haze-ink">DH</span>
               </span>
             </>
           )}
-          <span className="label-mono text-haze-ink">{stay.priceNote}</span>
+          <span className="label-mono text-haze-ink">{unit.priceNote}</span>
         </Reveal>
       </div>
     </article>
@@ -96,25 +99,25 @@ function StayEntry({ stay, flipped }: StayEntryProps): React.JSX.Element {
 }
 
 /** Server Component. */
-export function Stays(): React.JSX.Element {
+export function Fleet(): React.JSX.Element {
   return (
-    <section id="stays" className="grain relative bg-sand-deep py-section">
+    <section id="fleet" className="grain relative bg-sand-deep py-section">
       <div className="gutter">
         <SectionHeading
-          eyebrow={STAYS_COPY.eyebrow}
-          title={STAYS_COPY.title}
+          eyebrow={FLEET_COPY.eyebrow}
+          title={FLEET_COPY.title}
           titleClassName="max-w-[20ch]"
         />
 
         <div className="mt-24 flex flex-col gap-28 sm:gap-36">
-          {STAYS.map((stay, index) => (
-            <StayEntry key={stay.id} stay={stay} flipped={index % 2 === 1} />
+          {FLEET.map((unit, index) => (
+            <FleetEntry key={unit.id} unit={unit} flipped={index % 2 === 1} />
           ))}
         </div>
 
         <Reveal className="mt-24 border-t border-haze/30 pt-8">
           <p className="max-w-[56ch] text-sm leading-relaxed text-haze-ink">
-            {STAYS_COPY.footnote}
+            {FLEET_COPY.footnote}
           </p>
         </Reveal>
       </div>

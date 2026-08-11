@@ -1,60 +1,61 @@
-import { PROPERTY } from "@/lib/property.config";
+import { BUSINESS } from "@/lib/business.config";
 import type {
-  AlmanacReading,
-  CoastConfig,
-  DayCopy,
-  DayMoment,
+  BusinessIdentity,
+  ConditionsReading,
   EnquireCopy,
+  FleetCopy,
+  FleetUnit,
   ManifestoCopy,
   NavItem,
+  NightCopy,
   PhotoBrief,
-  PointsCopy,
-  PropertyIdentity,
-  Review,
+  RideCopy,
+  RideStage,
+  Route,
+  RoutesCopy,
+  Sentiment,
   SeoConfig,
-  Stay,
-  StaysCopy,
-  SurfBreak,
-  TableCopy,
+  TerrainConfig,
 } from "@/lib/types";
 
 /**
  * The page's content surface.
  *
- * This file holds no data of its own — it names the pieces of `PROPERTY` that
+ * This file holds no data of its own — it names the pieces of `BUSINESS` that
  * sections consume. The indirection is the point: components import stable
- * names (`SITE`, `STAYS`, `BREAKS`) and never reach into the config's shape, so
- * re-skinning the site for a new client is one file (`@/lib/property.config`)
- * and zero component edits.
+ * names (`SITE`, `FLEET`, `ROUTES`) and never reach into the config's shape, so
+ * re-skinning the site for a new client is one file
+ * (`@/lib/business.config`) and zero component edits.
  */
 
-export const SITE: PropertyIdentity = PROPERTY.identity;
-export const COAST: CoastConfig = PROPERTY.coast;
-export const SEO: SeoConfig = PROPERTY.seo;
+export const SITE: BusinessIdentity = BUSINESS.identity;
+export const TERRAIN: TerrainConfig = BUSINESS.terrain;
+export const SEO: SeoConfig = BUSINESS.seo;
 
-export const NAV_ITEMS: readonly NavItem[] = PROPERTY.nav;
+export const NAV_ITEMS: readonly NavItem[] = BUSINESS.nav;
 
-/** Static readings, used per-label when a live source is unreachable. */
-export const ALMANAC: readonly AlmanacReading[] = PROPERTY.almanacFallback;
+/** Static readings, used per-label when the live source is unreachable. */
+export const CONDITIONS: readonly ConditionsReading[] =
+  BUSINESS.conditionsFallback;
 
-export const HERO = PROPERTY.hero;
-export const HERO_PHOTO: PhotoBrief = PROPERTY.heroPhoto;
-export const PLACE_PHOTO: PhotoBrief = PROPERTY.placePhoto;
+export const HERO = BUSINESS.hero;
+export const HERO_PHOTO: PhotoBrief = BUSINESS.heroPhoto;
+export const PLACE_PHOTO: PhotoBrief = BUSINESS.placePhoto;
 
-export const MANIFESTO: ManifestoCopy = PROPERTY.manifesto;
+export const MANIFESTO: ManifestoCopy = BUSINESS.manifesto;
 
-export const STAYS_COPY: StaysCopy = PROPERTY.staysCopy;
-export const STAYS: readonly Stay[] = PROPERTY.stays;
+export const FLEET_COPY: FleetCopy = BUSINESS.fleetCopy;
+export const FLEET: readonly FleetUnit[] = BUSINESS.fleet;
 
-/** Aggregate platform scores. Never rendered without source and count. */
-export const REVIEWS: readonly Review[] = PROPERTY.reviews;
+/** Paraphrased review themes. Never rendered as quotations. */
+export const SENTIMENT: readonly Sentiment[] = BUSINESS.sentiment;
 
-export const POINTS_COPY: PointsCopy = PROPERTY.pointsCopy;
-export const BREAKS: readonly SurfBreak[] = PROPERTY.breaks;
+export const ROUTES_COPY: RoutesCopy = BUSINESS.routesCopy;
+export const ROUTES: readonly Route[] = BUSINESS.routes;
 
-export const DAY_COPY: DayCopy = PROPERTY.dayCopy;
-export const DAY: readonly DayMoment[] = PROPERTY.day;
+export const RIDE_COPY: RideCopy = BUSINESS.rideCopy;
+export const RIDE: readonly RideStage[] = BUSINESS.ride;
 
-export const TABLE: TableCopy = PROPERTY.table;
+export const NIGHT: NightCopy = BUSINESS.night;
 
-export const ENQUIRE: EnquireCopy = PROPERTY.enquire;
+export const ENQUIRE: EnquireCopy = BUSINESS.enquire;

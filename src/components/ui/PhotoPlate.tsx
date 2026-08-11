@@ -10,20 +10,29 @@ import { cn } from "@/lib/utils";
  * a plate never reads as "missing image".
  */
 const TONE_GROUND: Record<PhotoTone, string> = {
-  dawn: "linear-gradient(168deg, #3c4a52 0%, #6b7f7a 38%, #c4703a 78%, #e8dfd3 100%)",
-  noon: "linear-gradient(172deg, #e8dfd3 0%, #ddd2c3 44%, #c4a98c 76%, #8a5a44 100%)",
-  dusk: "linear-gradient(166deg, #2a322f 0%, #8a5a44 46%, #c4703a 74%, #d98a52 100%)",
+  dawn: "linear-gradient(168deg, #3a4a5c 0%, #6f7f90 38%, #c4a98c 78%, #e8dfd3 100%)",
+  noon: "linear-gradient(172deg, #e8dfd3 0%, #ddd2c3 44%, #c4a98c 76%, #85543f 100%)",
+  dusk: "linear-gradient(166deg, #1f2b3a 0%, #85543f 46%, #b0764f 74%, #d99a68 100%)",
   interior:
-    "linear-gradient(150deg, #f5f0e8 0%, #e8dfd3 40%, #ddd2c3 70%, #8a5a44 100%)",
-  ocean:
-    "linear-gradient(180deg, #6b7f7a 0%, #4a5a55 42%, #2a322f 74%, #1c2321 100%)",
+    "linear-gradient(150deg, #f5f0e8 0%, #e8dfd3 40%, #ddd2c3 70%, #85543f 100%)",
+  // Replaces `ocean`, whose deep blue-black was right for an Atlantic line-up
+  // and wrong for every frame this client has. Ochre haze over dry ground:
+  // pale sky at the top, dust through the middle, warm track at the bottom.
+  dust:
+    "linear-gradient(178deg, #ddd2c3 0%, #c4a98c 34%, #b0764f 70%, #85543f 100%)",
 };
 
-/** Tones that depict open water get a horizon rule at the optical third. */
+/**
+ * Tones with an open horizon get a rule at the optical third.
+ *
+ * `dust` qualifies for the same reason `ocean` did: a piste under open sky has
+ * a hard, visible horizon line, and the rule is what stops the placeholder
+ * reading as an abstract gradient.
+ */
 const HAS_HORIZON: ReadonlySet<PhotoTone> = new Set<PhotoTone>([
   "dawn",
   "dusk",
-  "ocean",
+  "dust",
 ]);
 
 const RATIO_CLASS: Record<AspectRatio, string> = {

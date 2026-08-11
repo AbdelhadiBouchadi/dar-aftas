@@ -10,8 +10,20 @@ export function SiteFooter(): React.JSX.Element {
     <footer data-ground="dark" className="grain relative bg-basalt text-sand">
       <div className="gutter py-20 sm:py-28">
         <div className="flex flex-col gap-16 lg:flex-row lg:justify-between">
-          <div className="max-w-md">
-            <p className="font-display text-[clamp(3rem,10vw,6rem)] leading-[0.85] tracking-[-0.04em]">
+          {/*
+            `min-w-0` is load-bearing. A flex item defaults to `min-width: auto`,
+            which refuses to shrink below its min-content width — and for a
+            single unbreakable word that is the whole word. An eight-character
+            wordmark at the old 6rem ceiling overflowed this column and painted
+            straight over the nav beside it.
+
+            Three guards, because the wordmark is client-supplied and its length
+            is not knowable here: the column may shrink, the type ceiling is set
+            so ~10 characters still fit the 28rem column, and `break-words` means
+            anything longer wraps rather than overlapping.
+          */}
+          <div className="min-w-0 max-w-md">
+            <p className="wrap-break-word font-display text-[clamp(2.5rem,8vw,4.5rem)] leading-[0.85] tracking-[-0.04em]">
               {SITE.wordmark}
             </p>
             <p className="mt-6 text-sm leading-relaxed text-haze-dim">
@@ -19,9 +31,9 @@ export function SiteFooter(): React.JSX.Element {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-x-10 gap-y-12 sm:grid-cols-3">
+          <div className="grid min-w-0 grid-cols-2 gap-x-10 gap-y-12 sm:grid-cols-3">
             <div>
-              <h2 className="label-mono mb-5 text-ochre-light">The House</h2>
+              <h2 className="label-mono mb-5 text-ochre-light">Explore</h2>
               <ul className="flex flex-col gap-3">
                 {NAV_ITEMS.map((item) => (
                   <li key={item.href}>

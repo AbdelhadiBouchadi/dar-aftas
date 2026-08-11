@@ -46,7 +46,7 @@ export const viewport: Viewport = {
   maximumScale: 5,
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#e8dfd3" },
-    { media: "(prefers-color-scheme: dark)", color: "#1c2321" },
+    { media: "(prefers-color-scheme: dark)", color: "#151e2a" },
   ],
 };
 
@@ -56,21 +56,36 @@ export const viewport: Viewport = {
  */
 const JS_ENABLED_SCRIPT = `document.documentElement.classList.add('js')`;
 
-/** Structured data — hospitality search results lean heavily on this. */
-const lodgingJsonLd = {
+/**
+ * Structured data — local search results lean heavily on this.
+ *
+ * `SportsActivityLocation`, not the `LodgingBusiness` this template shipped
+ * with. That type asserts the business provides accommodation, which would be
+ * a false claim to Google about a business that rents quads by the hour, and
+ * the kind of false claim that surfaces as a wrong rich result rather than an
+ * error anybody notices. `SportsActivityLocation` descends from both
+ * `LocalBusiness` and `Place`, so `address`, `telephone` and `amenityFeature`
+ * all remain valid on it.
+ *
+ * `telephone` is present here where it was missing before: for this business
+ * the phone *is* the booking channel, so it is the single most useful property
+ * in the whole object.
+ */
+const businessJsonLd = {
   "@context": "https://schema.org",
-  "@type": "LodgingBusiness",
+  "@type": "SportsActivityLocation",
   name: SITE.name,
   description: SITE.description,
   url: SITE.url,
   email: SITE.email,
+  telephone: SITE.phone,
   address: {
     "@type": "PostalAddress",
     addressLocality: SITE.locality,
     addressRegion: SITE.region,
     addressCountry: SITE.countryCode,
   },
-  amenityFeature: SEO.amenities.map((name) => ({
+  amenityFeature: SEO.features.map((name) => ({
     "@type": "LocationFeatureSpecification",
     name,
     value: true,
@@ -90,7 +105,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: JS_ENABLED_SCRIPT }} />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(lodgingJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(businessJsonLd) }}
         />
       </head>
       <body className="min-h-dvh bg-background text-foreground antialiased">

@@ -1,25 +1,30 @@
-import type { AlmanacReading } from '@/lib/types';
+import type { ConditionsReading } from '@/lib/types';
 
-export interface AlmanacBandProps {
-  readonly readings: readonly AlmanacReading[];
+export interface ConditionsBandProps {
+  readonly readings: readonly ConditionsReading[];
+  /** Lead-in label, e.g. "Out there now". Comes from the config, never here. */
+  readonly label: string;
 }
 
 /**
- * The morning almanac band.
+ * The live conditions band.
  *
- * Server Component. Lifted out of `Hero.tsx` unchanged so the readings can be
- * supplied live — every Tailwind class, the `data-hero-reading` hook on each
- * item and the `data-numeric` hook on each value are identical to the static
- * version, because the hero's GSAP timeline and the tabular-figures rule both
- * select on them.
+ * Server Component. Every Tailwind class, the `data-hero-reading` hook on each
+ * item and the `data-numeric` hook on each value are load-bearing: the hero's
+ * GSAP timeline selects on the first and the tabular-figures rule on the
+ * second. Change the markup here and the hero choreography stops finding its
+ * targets.
  */
-export function AlmanacBand({ readings }: AlmanacBandProps): React.JSX.Element {
+export function ConditionsBand({
+  readings,
+  label,
+}: ConditionsBandProps): React.JSX.Element {
   return (
     <div className="border-t border-sand/20 bg-basalt/55 backdrop-blur-md">
       <div className="gutter">
         <ul className="flex snap-x snap-mandatory gap-8 overflow-x-auto py-5 sm:gap-12 sm:py-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <li className="label-mono shrink-0 snap-start self-center text-ochre-light">
-            This morning
+            {label}
           </li>
           {readings.map((reading) => (
             <li

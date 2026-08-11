@@ -7,7 +7,7 @@ import { gsap, ScrollTrigger, useGSAP } from '@/lib/gsap';
 /**
  * Reading position, set as instrument data.
  *
- * Deliberately the same visual language as the hero almanac — a hairline rule
+ * Deliberately the same visual language as the hero conditions band — a rule
  * and a mono figure — because this site's structural device is "readings", and
  * a generic top-of-page bar would be a second design talking over the first.
  * It sits on the right edge, vertically, picking up where the hero's rotated

@@ -28,14 +28,14 @@ export default function NotFound(): React.JSX.Element {
         </h1>
 
         <p className="mt-8 max-w-[52ch] text-pretty text-base leading-[1.75] text-sand/75 sm:text-lg">
-          Nothing here. The tide takes things occasionally. Head back to the
-          house, or write to us and we will point you at whatever you were
-          looking for.
+          Nothing here. You have taken a turning that does not go anywhere —
+          which happens out there too. Head back to the start, or message us and
+          we will point you at whatever you were looking for.
         </p>
 
         <div className="mt-12 flex flex-wrap gap-4">
           <ButtonLink href="/" variant="inverse">
-            Back to the house
+            Back to the start
           </ButtonLink>
           <ButtonLink href={`mailto:${SITE.email}`} variant="outlineInverse">
             Write to us
@@ -43,7 +43,7 @@ export default function NotFound(): React.JSX.Element {
         </div>
       </div>
 
-      {/* Echoes the hero's almanac band, so even the error page is in the
+      {/* Echoes the hero's conditions band, so even the error page is in the
           same structural language. */}
       <div className="border-t border-sand/20 bg-basalt/55">
         <div className="gutter flex flex-wrap gap-x-12 gap-y-3 py-5">

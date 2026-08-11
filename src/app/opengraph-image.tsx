@@ -30,6 +30,16 @@ export default async function OpengraphImage(): Promise<ImageResponse> {
 
   const backgroundSrc = `data:image/jpeg;base64,${background.toString('base64')}`;
 
+  /**
+   * Satori has no `clamp()` and no text-fitting — a fixed size that suits a
+   * six-character wordmark silently runs off a 1200px card at nine. The card is
+   * the one asset a prospect sees before the site, so this steps the display
+   * size by length instead of hoping. 176px fits ~6 characters inside the
+   * 1056px type column; 132px fits ~10.
+   */
+  const wordmarkSize =
+    SITE.wordmark.length <= 6 ? 176 : SITE.wordmark.length <= 8 ? 148 : 132;
+
   return new ImageResponse(
     (
       <div
@@ -38,7 +48,7 @@ export default async function OpengraphImage(): Promise<ImageResponse> {
           height: '100%',
           display: 'flex',
           position: 'relative',
-          backgroundColor: '#1c2321',
+          backgroundColor: '#151e2a',
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -69,7 +79,7 @@ export default async function OpengraphImage(): Promise<ImageResponse> {
             width: 1200,
             height: 630,
             backgroundImage:
-              'linear-gradient(to top, rgba(28,35,33,0.95), rgba(28,35,33,0.55) 55%, rgba(28,35,33,0.50))',
+              'linear-gradient(to top, rgba(21,30,42,0.95), rgba(21,30,42,0.55) 55%, rgba(21,30,42,0.50))',
           }}
         />
         <div
@@ -80,7 +90,7 @@ export default async function OpengraphImage(): Promise<ImageResponse> {
             width: 1200,
             height: 630,
             backgroundImage:
-              'linear-gradient(96deg, rgba(28,35,33,0.90) 0%, rgba(28,35,33,0.66) 34%, rgba(28,35,33,0.16) 64%, rgba(28,35,33,0) 82%)',
+              'linear-gradient(96deg, rgba(21,30,42,0.90) 0%, rgba(21,30,42,0.66) 34%, rgba(21,30,42,0.16) 64%, rgba(21,30,42,0) 82%)',
           }}
         />
 
@@ -112,7 +122,7 @@ export default async function OpengraphImage(): Promise<ImageResponse> {
             style={{
               display: 'flex',
               fontFamily: 'Bodoni',
-              fontSize: 176,
+              fontSize: wordmarkSize,
               lineHeight: 0.8,
               letterSpacing: '-0.045em',
               color: '#e8dfd3',

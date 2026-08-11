@@ -2,11 +2,25 @@
 @import "tw-animate-css";
 
 /* ==========================================================================
-   ARGAN & ATLANTIC — Dar Tamri
+   PISTE & INDIGO — MayaQuad
    --------------------------------------------------------------------------
-   Palette built from the materials of the Souss coast, not from a generic
-   "luxury hotel" navy/gold. Every text pair below is contrast-computed
-   against WCAG 2.1 and annotated with its measured ratio.
+   Warm plaster base, one accent. The accent is MayaQuad's own blue, sampled
+   from their logo: the mark is exactly two colours, white and #1D5590, so
+   that single blue is the entire brand and everything cool below is derived
+   from its hue (211°).
+
+   The base stays warm on purpose. Blue on warm plaster is the Majorelle
+   pairing — specific to this country rather than to "adventure tourism" — and
+   the photography is all ochre dust, which a cool ground would fight.
+
+   TOKEN NAMES ARE DELIBERATELY UNCHANGED. `--ochre` now holds a blue, which
+   reads oddly here but means the whole re-skin is a value swap: not one
+   component class had to change. Renaming would touch ~15 files. Worth doing
+   as its own pass, not smuggled into a colour change.
+
+   Every text pair below is contrast-computed against WCAG 2.1 and annotated
+   with its measured ratio. This pass fixed four pre-existing failures — see
+   `--ochre`, `--ochre-ink` and `--clay`.
    ========================================================================== */
 
 :root {
@@ -14,15 +28,27 @@
   --sand: #e8dfd3; /* lime-washed plaster — page ground */
   --sand-deep: #ddd2c3; /* the same wall in shadow — muted surfaces */
   --bone: #f5f0e8; /* raised cards, lifted above the ground */
-  --basalt: #1c2321; /* wet volcanic rock — ink + dark sections */
-  --basalt-soft: #2a322f; /* dark surface, one step off the floor */
-  --clay: #8a5a44; /* tadelakt, unpolished */
-  --ochre: #c4703a; /* argan husk — graphic fills, rules, large marks */
-  --ochre-ink: #9a4f22; /* darkened for type: 4.53:1 on --sand ✓ AA */
-  --ochre-light: #d98a52; /* lightened for type on dark: 5.91:1 on --basalt ✓ */
-  --haze: #6b7f7a; /* Atlantic haze — borders, 3:1 large text only */
-  --haze-ink: #4a5a55; /* darkened for type: 5.52:1 on --sand ✓ AA */
-  --haze-dim: #8b9d97; /* secondary type on dark: 6.4:1 on --basalt ✓ */
+  /* Ink and dark sections. Only a *hint* of the brand hue: the hero lays this
+     over the photograph at up to 92% opacity, and a properly blue navy turned
+     every warm dust frame on the site cold and foggy. The old value was a very
+     dark near-neutral with a green lean; this is the same near-neutral with a
+     blue lean (B−R = 16, not 21), which reads as brand without bleaching the
+     photography. */
+  --basalt: #171d27; /* 12.83:1 under --sand ✓ AAA */
+  --basalt-soft: #212832; /* dark surface, one step off the floor */
+  /* Tadelakt. Held warm as the one counterweight to the blue — and darkened
+     from #8a5a44, which failed at 4.39:1 as italic type on --sand. */
+  --clay: #85543f; /* 4.77:1 on --sand ✓ AA · 5.55:1 under --bone ✓ */
+  /* Graphic fills, rules and dots. NOT the literal logo blue: #1D5590 scores
+     only 2.20:1 on --basalt-soft, so the 4px "Technical" rule on a route card
+     would have all but vanished. This is the one lightness that clears 3:1 on
+     the warm light grounds AND on the dark cards. */
+  --ochre: #2a78cb; /* 3.43:1 on --sand ✓ · 3.17:1 on --basalt-soft ✓ */
+  --ochre-ink: #1d5590; /* THE LOGO BLUE, unmodified. 5.78:1 on --sand ✓ AA */
+  --ochre-light: #5f9fd4; /* for type on dark: 5.91:1 on --basalt ✓ AA */
+  --haze: #6f7f90; /* dust haze — borders, 3:1 large text only */
+  --haze-ink: #4d5a66; /* darkened for type: 5.36:1 on --sand ✓ AA */
+  --haze-dim: #92a2b0; /* secondary type on dark: 6.41:1 on --basalt ✓ */
 
   /* --- Semantic tokens (shadcn/ui + 21st.dev contract) -------------------
      Registry components import these names. Mapping them onto the brand ramp
@@ -225,7 +251,20 @@
     filter: saturate(0.82) contrast(1.05);
   }
 
-  /* Tone: warm into the highlights, cool-green into the shadows. */
+  /* Tone: warm into the highlights, cool blue into the shadows.
+
+     The warm end pulls --clay, NOT --ochre. It used to pull --ochre back when
+     that token was an orange; now that --ochre carries the brand blue, reusing
+     it here would wash every photograph cold — and every frame this client has
+     is warm desert dust. The grade describes photography, not brand, so it
+     hangs off the one token that is still warm.
+
+     --clay is lifted toward --sand first. Soft-light warms by *brightening*
+     the warm channels, so the mid-light orange this replaced did real work
+     that raw --clay cannot: it is dark enough that pushing it to 70% mostly
+     darkened the frame instead of warming it. Mixing 40% --sand into it
+     restores a mid-light warm without adding a colour that is not already in
+     the ramp. */
   .photo-film::before {
     content: "";
     position: absolute;
@@ -235,7 +274,12 @@
     mix-blend-mode: soft-light;
     background: linear-gradient(
       168deg,
-      color-mix(in srgb, var(--ochre) 62%, transparent) 0%,
+      color-mix(
+          in srgb,
+          color-mix(in srgb, var(--clay) 60%, var(--sand)) 66%,
+          transparent
+        )
+        0%,
       transparent 44%,
       color-mix(in srgb, var(--haze) 34%, transparent) 70%,
       color-mix(in srgb, var(--basalt) 58%, transparent) 100%

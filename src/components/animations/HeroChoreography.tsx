@@ -89,11 +89,11 @@ export function HeroChoreography({
         }
 
         /**
-         * Safety net for the almanac.
+         * Safety net for the conditions band.
          *
          * Readings are hidden by a CSS gate until this timeline un-hides them,
          * and they are collected once, above. If a reading ever arrives after
-         * mount — a streamed/uncached almanac, a client-side refresh — it would
+         * mount — a streamed/uncached band, a client-side refresh — it would
          * never be collected and would stay invisible forever. This sweeps any
          * stragglers into view once the entrance has finished.
          */

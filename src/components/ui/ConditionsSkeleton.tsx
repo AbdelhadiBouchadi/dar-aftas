@@ -2,28 +2,30 @@ import { cn } from '@/lib/utils';
 
 /** Approximate glyph widths per reading, so the row does not reflow on swap. */
 const PLACEHOLDER_WIDTHS: readonly { label: string; value: string }[] = [
-  { label: 'w-10', value: 'w-14' }, // Swell
-  { label: 'w-12', value: 'w-10' }, // Period
-  { label: 'w-16', value: 'w-20' }, // Direction
-  { label: 'w-8', value: 'w-24' }, // Wind
-  { label: 'w-20', value: 'w-14' }, // Low water
-  { label: 'w-20', value: 'w-14' }, // High water
-  { label: 'w-14', value: 'w-14' }, // Sunrise
-  { label: 'w-6', value: 'w-12' }, // Sea
+  { label: 'w-6', value: 'w-12' }, // Air
+  { label: 'w-10', value: 'w-12' }, // Feels
+  { label: 'w-8', value: 'w-20' }, // Wind
+  { label: 'w-10', value: 'w-14' }, // Gusts
+  { label: 'w-16', value: 'w-14' }, // Visibility
+  { label: 'w-5', value: 'w-8' }, // UV
+  { label: 'w-20', value: 'w-14' }, // Golden hour
+  { label: 'w-12', value: 'w-14' }, // Sunset
 ];
 
-export interface AlmanacSkeletonProps {
+export interface ConditionsSkeletonProps {
   readonly className?: string;
+  /** Lead-in label, matching the band it stands in for. */
+  readonly label: string;
 }
 
 /**
- * Loading state for the almanac band.
+ * Loading state for the conditions band.
  *
- * Currently unused: `getLiveAlmanacData` is cached with `revalidate`, which
+ * Currently unused: `getLiveConditions` is cached with `revalidate`, which
  * makes the route ISR, so the real readings are in the first HTML byte and
  * this never renders. It exists so that switching to an uncached, streamed
- * almanac (`cache: 'no-store'` behind a Suspense boundary) is a one-line
- * change with a designed loading state already in place.
+ * band (`cache: 'no-store'` behind a Suspense boundary) is a one-line change
+ * with a designed loading state already in place.
  *
  * Deliberately reuses the band's own container classes — `bg-basalt/55`,
  * `border-sand/20`, the same paddings, `label-mono` and `text-lg` line boxes —
@@ -33,9 +35,10 @@ export interface AlmanacSkeletonProps {
  * The pulse is opacity-only, and `motion-reduce:animate-none` stops it for
  * anyone who has asked for less movement.
  */
-export function AlmanacSkeleton({
+export function ConditionsSkeleton({
   className,
-}: AlmanacSkeletonProps): React.JSX.Element {
+  label,
+}: ConditionsSkeletonProps): React.JSX.Element {
   return (
     <div
       className={cn(
@@ -47,7 +50,7 @@ export function AlmanacSkeleton({
       <div className="gutter">
         <ul className="flex gap-8 py-5 sm:gap-12 sm:py-6">
           <li className="label-mono shrink-0 self-center text-ochre-light/70">
-            This morning
+            {label}
           </li>
           {PLACEHOLDER_WIDTHS.map((width, index) => (
             <li key={width.label + String(index)} className="shrink-0">
