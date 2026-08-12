@@ -1,4 +1,5 @@
-import { BUSINESS } from "@/lib/business.config";
+import { BUSINESS } from '@/lib/business.config';
+
 import type {
   BusinessIdentity,
   ConditionsReading,
@@ -16,7 +17,7 @@ import type {
   Sentiment,
   SeoConfig,
   TerrainConfig,
-} from "@/lib/types";
+} from '@/lib/types';
 
 /**
  * The page's content surface.
