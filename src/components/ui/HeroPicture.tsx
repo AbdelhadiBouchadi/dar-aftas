@@ -6,21 +6,26 @@ export interface HeroPictureProps {
 }
 
 const ALT =
-  'A surfer riding a long right-hand wave at dawn, the water ochre with suspended sand under a pale grey sky.';
+  'Two surfers sitting out beyond the break at dawn, a dark headland behind them under an ochre sky.';
 
 /**
  * The hero frame, art-directed across breakpoints.
  *
  * A 21/9 landscape composition is right on a desktop and destroys itself on a
  * phone — `object-cover` would crop a 2800×1200 frame to roughly its centre
- * fifth. So phones get a separately composed 3/4 frame (an aerial of the same
- * ochre sand-water) rather than a squeezed version of the wide one.
+ * fifth. So phones get a separately composed 3/4 frame rather than a squeezed
+ * version of the wide one.
+ *
+ * Both frames are cut from the same negative, which is what makes the two
+ * breakpoints read as one moment: the wide cut is anchored to the top of the
+ * plate so the ochre sky band and headland survive the 21/9 crop, while the
+ * portrait cut drops into the water to keep the surfers at a readable size.
  *
  * `next/image` scales a single source and cannot express that, so this is a
  * real <picture>: the browser evaluates `media` before fetching and downloads
  * exactly one file. AVIF first, WebP next, JPEG as the floor.
  *
- * At 2800px the AVIF is 111KB — smaller than the 640px portrait JPEG would be.
+ * At 2800px the AVIF is 88KB — smaller than the 640px portrait JPEG would be.
  */
 export function HeroPicture({
   className,

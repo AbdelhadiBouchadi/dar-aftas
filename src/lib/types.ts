@@ -111,7 +111,7 @@ export interface Note {
 
 /** Who the property is. Drives metadata, structured data and the social card. */
 export interface PropertyIdentity {
-  /** Full trading name, e.g. "Dar Aftas". */
+  /** Full trading name, e.g. "Dar Talwit". */
   readonly name: string;
   /** Short mark set in Bodoni at hero scale. Keep it to one word. */
   readonly wordmark: string;

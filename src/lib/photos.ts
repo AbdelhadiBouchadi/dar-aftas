@@ -43,15 +43,15 @@ export const PHOTOS: Readonly<Record<string, StaticImageData>> = {
  */
 export const PHOTO_ALT: Readonly<Record<string, string>> = {
   place:
-    "Ochre and whitewashed houses stacked on a hillside above a beach, fishing boats drawn up on the sand below.",
+    "A whitewashed hillside town seen from above at sunset, the harbour and a low sun filling the far side of the frame.",
   table:
-    "A long table seen from above, mid-meal: shared dishes, candles and glasses spread across the whole surface.",
+    "A table seen from directly above mid-meal, several hands reaching in across shared plates of grilled food and dips.",
   "room-bed":
-    "Hard parallel stripes of morning sunlight falling across rumpled bed linen.",
+    "Hard parallel stripes of low sunlight falling across dark rumpled bed linen.",
   "room-niche":
-    "A deep rectangular niche cut into a thick sand-coloured plaster wall, lit from one side.",
+    "A room with curved white plaster walls, a low bed, and a small arched window cut into the wall beside it.",
   "room-courtyard":
     "A tree throwing dappled shade across a whitewashed courtyard wall beside a blue-painted door.",
   "room-terrace":
-    "Low wicker chairs on a terrace facing a hazy sea, the horizon a flat band behind them.",
+    "Cane chairs and small tables on a terrace above a flat blue sea, a headland in the distance.",
 };

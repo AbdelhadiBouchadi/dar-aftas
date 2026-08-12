@@ -22,7 +22,7 @@ import type { PropertyConfig } from "@/lib/types";
  *      `@/lib/photos`. Unbound slots render their art-direction brief, so an
  *      unshot property is still presentable.
  *
- * The demo property below — Dar Aftas — is deliberately fictional and
+ * The demo property below — Dar Talwit — is deliberately fictional and
  * deliberately not tied to one village. It sits in Taghazout Bay because that
  * is the middle of the coast, and its rooms and breaks are named across the
  * whole stretch, so any prospect between Anza and Imsouane can see their own
@@ -30,12 +30,18 @@ import type { PropertyConfig } from "@/lib/types";
  */
 export const PROPERTY: PropertyConfig = {
   identity: {
-    name: "Dar Aftas",
-    wordmark: "AFTAS",
+    name: "Dar Talwit",
+    wordmark: "TALWIT",
     tagline: "Guest house & surf — Taghazout Bay",
-    /** Tachelhit for the shore. Chosen because it names the whole coast, not one village. */
+    /**
+     * Amazigh for calm/tranquility — attested in Kabyle lexicography; the
+     * cognate is shared across the Amazigh family. Deliberately says "Amazigh"
+     * rather than "Tachelhit": the narrower attribution is not verified, and
+     * this string ships as a factual claim on a public page. Chosen because a
+     * condition names the whole coast, not one village.
+     */
     provenance:
-      "Aftas — Tachelhit for the shore: the strip of sand between the argan and the Atlantic.",
+      "Talwit — Amazigh for the calm: the flat hour at dusk when the wind drops and the water goes to oil.",
     description:
       "A six-room guest house on the Taghazout Bay coast, Morocco. The house keeps the ocean's hours: swell, tide and first light decide the day.",
     location: "Taghazout Bay, Agadir Ida-Outanane, Morocco",
@@ -43,19 +49,25 @@ export const PROPERTY: PropertyConfig = {
     region: "Souss-Massa",
     countryCode: "MA",
     country: "Morocco",
-    coordinates: "30.5427° N, 9.7110° W",
-    email: "hello@daraftas.ma",
+    coordinates: "30.5683° N, 9.7346° W",
+    email: "hello@dartalwit.ma",
     phone: "+212 6 00 00 00 00",
-    url: "https://daraftas.ma",
+    url: "https://dartalwit.ma",
   },
 
   /**
    * Taghazout Bay. The points along this stretch look roughly due west, which
    * puts the land at 90° — the reciprocal the wind classifier measures against.
+   *
+   * The point is deliberately set just off the shoreline rather than on a plot.
+   * `layout.tsx` publishes this as `LodgingBusiness` structured data, and a
+   * fictional business must not assert itself at a real address. Being a little
+   * offshore also suits the marine model the almanac reads from. A real client
+   * replaces this with their actual position.
    */
   coast: {
-    latitude: 30.5427,
-    longitude: -9.711,
+    latitude: 30.5683,
+    longitude: -9.7346,
     coastFacingDegrees: 270,
   },
 
@@ -126,7 +138,7 @@ export const PROPERTY: PropertyConfig = {
     statement:
       "Six rooms, one long table, and a terrace that faces the swell window.",
     body: [
-      "Dar Aftas is a working guest house, not a resort. The building is old Taghazout — thick walls, lime-washed tadelakt, a stair that climbs to the roof where everyone ends up at six in the evening. We rebuilt it slowly, with masons from Aourir, using the materials the coast already had.",
+      "Dar Talwit is a working guest house, not a resort. The building is old coast — thick walls, lime-washed tadelakt, a stair that climbs to the roof where everyone ends up at six in the evening. We rebuilt it slowly, with masons who had spent thirty years on mosque walls inland and had opinions about every one of ours, using the materials the coast already had.",
       "There is no schedule pinned to the wall. There is a tide table. Breakfast is whenever the morning session ends, and it is still hot when you get back, because the kitchen has been watching the water too.",
     ],
     pullQuote:
@@ -170,7 +182,7 @@ export const PROPERTY: PropertyConfig = {
       details: [
         "Two aspects — sunrise over the hills, sunset on the water",
         "Deep window seat cut into a metre of wall",
-        "Berber wool blanket from the Tuesday souk at Aourir",
+        "Berber wool blanket off the Tuesday souk, beaten soft over ten winters",
       ],
       nightlyFrom: 210,
       photo: {
@@ -319,12 +331,12 @@ export const PROPERTY: PropertyConfig = {
     {
       time: "09:30",
       title: "The long table",
-      body: "Msemen, eggs from Tamraght, argan oil pressed by the co-operative on the Tamri road, amlou, and a flat bread that never quite makes it to the middle of the table.",
+      body: "Msemen, eggs from the smallholding over the ridge, argan oil from the women's co-operative up the valley, amlou, and a flat bread that never quite makes it to the middle of the table.",
     },
     {
       time: "11:00",
       title: "The flat hours",
-      body: "The wind comes onshore and the day opens up. Hammam, the market at Aourir on Tuesdays, or nothing at all on the roof, which is the correct answer.",
+      body: "The wind comes onshore and the day opens up. Hammam, the Tuesday souk inland, or nothing at all on the roof, which is the correct answer.",
     },
     {
       time: "16:30",
@@ -342,8 +354,8 @@ export const PROPERTY: PropertyConfig = {
     eyebrow: "The Table",
     statement: "One menu. One sitting. Whatever the boats brought in.",
     body: [
-      "We do not run a restaurant. We run a table, and you are at it. Dinner is a single seating at a quarter to eight, cooked by Fatima, who has been feeding this house since before it took guests.",
-      "The fish comes from the harbour at Taghazout, three kilometres south, and is chosen the same afternoon. The vegetables come from the Tuesday souk at Aourir. The oil is argan, pressed by the women's co-operative on the Tamri road, and it is on the table at every meal including breakfast.",
+      "We do not run a restaurant. We run a table, and you are at it. Dinner is a single seating at a quarter to eight, cooked by Izza, who fed the masons through the whole rebuild and stayed on when the first guests turned up.",
+      "The fish comes off the boats at the harbour below, chosen the same afternoon it is cooked. The vegetables come from the Tuesday souk inland — whatever is stacked highest that morning, which in October means tomatoes. The oil is argan, pressed cold by a women's co-operative up the valley, and it is on the table at every meal including breakfast.",
     ],
     photo: {
       id: "table",

@@ -1,13 +1,12 @@
 # Photography Brief
 
-> **Status:** all eight slots are now filled with real photography from Pexels.
-> See [PHOTO-CREDITS.md](./PHOTO-CREDITS.md) for what was chosen, why, and where
-> it falls short of the briefs below. The four room slots are the weak point —
-> they hold material and light studies rather than actual interiors, because no
-> stock library has a lime-plaster Moroccan guest house.
+> **Status:** all eight slots hold photography from Pexels. See
+> [PHOTO-CREDITS.md](./PHOTO-CREDITS.md) for what was chosen, why, and where it
+> falls short of the briefs below. The room slots remain the weak point — stock
+> has no lime-plaster Moroccan guest house, so they hold the nearest real
+> interiors and light studies rather than the property itself.
 >
-> This document remains the specification: it is what to hand a photographer,
-> and what the AI prompts at the bottom target.
+> This document remains the specification: it is what to hand a photographer.
 
 Each unfilled slot renders its own brief on the page, so nothing is a grey box
 and nothing is guessed at later.

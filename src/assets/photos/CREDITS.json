@@ -1,54 +1,51 @@
 [
   {
     "slot": "hero",
-    "photographer": "Jimmy  Boos",
-    "pexelsId": 12343310,
-    "pageUrl": "https://www.pexels.com/photo/people-wearing-black-wetsuits-while-surfing-on-the-beach-12343310/"
+    "photographer": "Gilberto Olimpio",
+    "pexelsId": 8050362,
+    "pageUrl": "https://www.pexels.com/photo/a-person-swimming-in-the-sea-8050362/"
   },
   {
     "slot": "hero-portrait",
-    "photographer": "Red Zeppelin",
-    "pexelsId": 34596817,
-    "pageUrl": "https://www.pexels.com/photo/aerial-view-of-surfer-on-the-jurassic-coastline-34596817/"
+    "photographer": "Gilberto Olimpio",
+    "pexelsId": 8050362,
+    "pageUrl": "https://www.pexels.com/photo/a-person-swimming-in-the-sea-8050362/",
+    "note": "Same negative as `hero`, cropped 3/4 so both breakpoints read as one moment."
   },
   {
     "slot": "place",
-    "photographer": "Zak Mogel",
-    "pexelsId": 37138791,
-    "pageUrl": "https://www.pexels.com/photo/bustling-beachfront-with-boats-in-taghazout-37138791/"
+    "photographer": "AXP Photography",
+    "pexelsId": 16563672,
+    "pageUrl": "https://www.pexels.com/photo/mykonos-town-at-sunset-16563672/"
   },
   {
     "slot": "table",
-    "photographer": "Askar Abayev",
-    "pexelsId": 5638752,
-    "pageUrl": "https://www.pexels.com/photo/food-on-decorated-table-during-party-5638752/"
+    "photographer": "Keegan Checks",
+    "pexelsId": 34104575,
+    "pageUrl": "https://www.pexels.com/photo/delicious-mediterranean-feast-in-tanzania-34104575/"
   },
   {
     "slot": "room-bed",
-    "source": "ai-generated",
-    "generator": "pollinations.ai (Flux)",
-    "seed": 47,
-    "promptSource": "ART-DIRECTION.md"
+    "photographer": "Akva Mushka",
+    "pexelsId": 14567693,
+    "pageUrl": "https://www.pexels.com/photo/black-and-white-close-up-of-a-striped-bed-sheet-14567693/"
   },
   {
     "slot": "room-niche",
-    "source": "ai-generated",
-    "generator": "pollinations.ai (Flux)",
-    "seed": 47,
-    "promptSource": "ART-DIRECTION.md"
+    "photographer": "Ricardo Cacho",
+    "pexelsId": 15303766,
+    "pageUrl": "https://www.pexels.com/photo/bed-in-a-hotel-room-15303766/"
   },
   {
     "slot": "room-courtyard",
-    "source": "ai-generated",
-    "generator": "pollinations.ai (Flux)",
-    "seed": 11,
-    "promptSource": "ART-DIRECTION.md"
+    "photographer": "Ayşegül Aytören",
+    "pexelsId": 13458950,
+    "pageUrl": "https://www.pexels.com/photo/a-blue-steel-gate-beside-a-tree-13458950/"
   },
   {
     "slot": "room-terrace",
-    "source": "ai-generated",
-    "generator": "pollinations.ai (Flux)",
-    "seed": 11,
-    "promptSource": "ART-DIRECTION.md"
+    "photographer": "George Zografidis",
+    "pexelsId": 17285308,
+    "pageUrl": "https://www.pexels.com/photo/chairs-and-tables-on-terrace-on-sea-shore-17285308/"
   }
 ]

@@ -3,7 +3,7 @@
 A production marketing site for small hospitality on the Agadir coast — surf
 camps, guest houses, riads and lodges from Anza north to Imsouane.
 
-It ships as a working demo property (**Dar Aftas**, fictional, deliberately not
+It ships as a working demo property (**Dar Talwit**, fictional, deliberately not
 tied to one village) and is built to be re-skinned per client: everything that
 identifies a property lives in one config object. See
 [Re-skinning for a client](#re-skinning-for-a-client).
@@ -140,19 +140,20 @@ are installed for the same reason.
 
 ## Photography
 
-Eight photographs are integrated, sourced from Pexels — see
+Eight slots are filled from Pexels — see
 [PHOTO-CREDITS.md](./PHOTO-CREDITS.md) for credits, selection method and honest
-limitations (the four "rooms" are material studies, not rooms). The original
-briefs live in [ART-DIRECTION.md](./ART-DIRECTION.md).
+limitations (the room frames are the nearest real interiors, not the property).
+The original briefs live in [ART-DIRECTION.md](./ART-DIRECTION.md).
 
 - **Sources**: `src/assets/photos/*.jpg`, **static-imported** via
   `src/lib/photos.ts` so Next generates real dimensions and a `blurDataURL`
 - **Hero**: art-directed across breakpoints via a genuine `<picture>` —
-  a 21/9 frame ≥1024px, a separately composed 3/4 frame below. `next/image`
-  scales one source and cannot express that. AVIF at 2800px is 111KB
+  a 21/9 frame ≥1024px, a separately composed 3/4 frame below, both cut from
+  one negative. `next/image` scales one source and cannot express that.
+  AVIF at 2800px is 88KB
 - **Unified grade**: `.photo-film` in `globals.css` desaturates, lifts
   contrast, lays a warm-highlight / cool-shadow gradient in `soft-light` and
-  finishes with grain. This is what makes eight photographers read as one
+  finishes with grain. This is what makes seven photographers read as one
   shoot — re-grade the whole site from that one block
 - **Reveal**: `ImageReveal` wipes each frame in with `clip-path`, matching the
   mask gesture the typography already uses
@@ -240,7 +241,7 @@ loading state already in place.
 - **`lenis` instead of `@studio-freight/lenis`.** The Studio Freight package is
   deprecated and frozen at 1.0.42; the library moved to the bare `lenis`
   package (1.3.26). Identical API.
-- **Content is fiction, and deliberately so.** Dar Aftas does not exist. Room
+- **Content is fiction, and deliberately so.** Dar Talwit does not exist. Room
   names, rates and copy are written to be plausible anywhere on this coast, so
   a prospect can see their own house in it. Replace via
   `property.config.ts` before any launch.
